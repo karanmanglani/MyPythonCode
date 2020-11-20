@@ -140,6 +140,9 @@ textEditor.config(yscrollcommand=scrollBar.set)
 
 ######################## StatusBar ################################
 
+statusBar = ttk.Label(mainApplication, text='Status Bar')
+statusBar.pack(side=tk.BOTTOM)
+
 ######################## Ending of StatusBar ######################
 
 ####################### Main Menu Functionality ##################
