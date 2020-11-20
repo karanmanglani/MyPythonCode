@@ -3,10 +3,10 @@ from tkinter import ttk
 from tkinter import font,colorchooser,filedialog,messagebox
 import os
 # Importing parts of our application 
-import mainMenu
-import toolbar
-import textEditor
-import statusBar
+import mainMenu as mm
+import toolbar as tb
+import textEditor as te
+import statusBar as sb
 
 mainApplication = tk.Tk()
 mainApplication.geometry('1200x800')
@@ -124,6 +124,17 @@ alignRightBtn.grid(row=0,column=8,padx=5)
 ######################## Ending of toolbar ######################
 
 ######################## text editor ################################
+###### GUI ###########
+
+textEditor = tk.Text(mainApplication)
+textEditor.config(wrap='word',relief=tk.FLAT)
+
+scrollBar = tk.Scrollbar(mainApplication)
+textEditor.focus_set()
+scrollBar.pack(side=tk.RIGHT, fill = tk.Y)
+textEditor.pack(fill=tk.BOTH, expand=True)
+scrollBar.config(command=textEditor.yview)
+textEditor.config(yscrollcommand=scrollBar.set)
 
 ######################## Ending of text editor ######################
 
