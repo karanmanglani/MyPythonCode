@@ -40,16 +40,28 @@ cutIcon = tk.PhotoImage(file='./Icons/cut.png')
 clearAllIcon = tk.PhotoImage(file='./Icons/clear_all.png')
 findIcon = tk.PhotoImage(file='./Icons/find.png')
 
-edit = tk.Menu(mainMenu, tearoff = False)
-
+edit = tk.Menu(mainMenu, tearoff = False) #Creating edit  Menu
+# Adding Edit Commands
 edit.add_command(label="Copy" , image=copyIcon, compound = tk.LEFT, accelerator = 'Ctrl + O')
 edit.add_command(label="Paste" , image=pasteIcon, compound = tk.LEFT, accelerator = 'Ctrl + V')
 edit.add_command(label="Cut" , image=cutIcon, compound = tk.LEFT, accelerator = 'Ctrl + X')
 edit.add_command(label="Clear All" , image=clearAllIcon, compound = tk.LEFT, accelerator = 'Ctrl + Alt + C')
 edit.add_command(label="Find" , image=findIcon, compound = tk.LEFT, accelerator = 'Ctrl + F')
 
-view = tk.Menu(mainMenu, tearoff = False)
-colorTheme = tk.Menu(mainMenu, tearoff = False)
+#View 
+#View Icons
+toolBarIcon = tk.PhotoImage(file="./Icons/tool_bar.png")
+statusBarIcon = tk.PhotoImage(file="./Icons/status_bar.png")
+
+view = tk.Menu(mainMenu, tearoff = False) # Creating view menu
+# Adding view commands
+view.add_checkbutton(label="Tool Bar", image=toolBarIcon, compound=tk.LEFT)
+view.add_checkbutton(label="Status Bar", image=statusBarIcon, compound=tk.LEFT)
+
+# Color Themes
+# Color theme icons
+
+colorTheme = tk.Menu(mainMenu, tearoff = False) # Creating color theme icons
 
 # cascade
 mainMenu.add_cascade(label='File',menu = file)
