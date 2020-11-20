@@ -67,6 +67,59 @@ mainMenu.add_cascade(label='Color Theme',menu = colorTheme)
 ######################## Ending of main menu ######################
 
 ######################## toolbar ################################
+##### GUI #####
+toolBar = ttk.Label(mainApplication)
+toolBar.pack(side=tk.TOP, fill = tk.X)
+
+## Font Box
+fontTuple = tk.font.families()
+fontFamily = tk.StringVar()
+fontBox = ttk.Combobox(toolBar, width = 30, textvariable = fontFamily, state = 'readonly')
+fontBox['values'] = fontTuple
+fontBox.current(fontTuple.index('Arial'))
+fontBox.grid(row = 0, column = 0, padx = 5)
+
+## Size Box
+sizeVar = tk.IntVar()
+fontSize = ttk.Combobox(toolBar, width = 20, textvariable = sizeVar)
+fontSize['values'] = tuple(range(8,80,2))
+fontSize.current = 32
+fontSize.grid(row=0, column=1, padx = 5)
+
+## bold button
+boldIcon = tk.PhotoImage(file='./Icons/bold.png')
+boldBtn = ttk.Button(toolBar, image=boldIcon)
+boldBtn.grid(row=0, column=2, padx = 5)
+
+## Italic Button
+italicIcon = tk.PhotoImage(file='./Icons/italic.png')
+italicBtn = ttk.Button(toolBar, image=italicIcon)
+italicBtn.grid(row=0, column=3, padx = 5)
+
+## Underline button
+underlineIcon = tk.PhotoImage(file='./Icons/underline.png')
+underlineBtn = ttk.Button(toolBar, image = underlineIcon)
+underlineBtn.grid(row=0, column=4, padx = 5)
+
+## Font Colour Button
+fontColorIcon = tk.PhotoImage(file='./Icons/font_color.png')
+fontColorBtn = ttk.Button(toolBar, image=fontColorIcon)
+fontColorBtn.grid(row=0,column=5,padx= 5)
+
+## Align Left Button
+alignLeftIcon = tk.PhotoImage(file='./Icons/align_left.png')
+alignLeftBtn = ttk.Button(toolBar, image= alignLeftIcon)
+alignLeftBtn.grid(row=0, column=6, padx = 5)
+
+## Align Center Button
+alignCenterIcon = tk.PhotoImage(file='./Icons/align_center.png')
+alignCenterBtn = ttk.Button(toolBar, image= alignCenterIcon)
+alignCenterBtn.grid(row=0,column=7,padx=5)
+
+## Align Right Button
+alignRightIcon = tk.PhotoImage(file='./Icons/align_right.png')
+alignRightBtn = ttk.Button(toolBar, image=alignRightIcon)
+alignRightBtn.grid(row=0,column=8,padx=5)
 
 ######################## Ending of toolbar ######################
 
@@ -80,6 +133,9 @@ mainMenu.add_cascade(label='Color Theme',menu = colorTheme)
 
 ####################### Main Menu Functionality ##################
 
+
+
+#### As in Procedural programming functions should be declared before use therefore file commands are added in the end and function is defined before
 # Adding File Commands
 file.add_command(label="New",image=newIcon, compound=tk.LEFT, accelerator='Ctrl+N')
 file.add_command(label="Open",image=openIcon, compound=tk.LEFT, accelerator='Ctrl+O')
