@@ -2,11 +2,6 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import font,colorchooser,filedialog,messagebox
 import os
-# Importing parts of our application 
-import mainMenu as mm
-import toolbar as tb
-import textEditor as te
-import statusBar as sb
 
 mainApplication = tk.Tk()
 mainApplication.geometry('1200x800')
@@ -81,9 +76,10 @@ fontBox.grid(row = 0, column = 0, padx = 5)
 
 ## Size Box
 sizeVar = tk.IntVar()
-fontSize = ttk.Combobox(toolBar, width = 20, textvariable = sizeVar)
-fontSize['values'] = tuple(range(8,80,2))
-fontSize.current = 32
+fontSize = ttk.Combobox(toolBar, width = 20, textvariable = sizeVar, state = 'readonly')
+fontSizeTuple = tuple(range(8,80,2))
+fontSize['values'] = fontSizeTuple
+fontSize.current(fontSizeTuple.index(32))
 fontSize.grid(row=0, column=1, padx = 5)
 
 ## bold button
@@ -126,6 +122,7 @@ alignRightBtn.grid(row=0,column=8,padx=5)
 ######################## text editor ################################
 ###### GUI ###########
 
+
 textEditor = tk.Text(mainApplication)
 textEditor.config(wrap='word',relief=tk.FLAT)
 
@@ -135,6 +132,77 @@ scrollBar.pack(side=tk.RIGHT, fill = tk.Y)
 textEditor.pack(fill=tk.BOTH, expand=True)
 scrollBar.config(command=textEditor.yview)
 textEditor.config(yscrollcommand=scrollBar.set)
+
+currentFontFamily = 'Arial'
+currentFontSize = 32
+def setFont(mainApplication):
+    global currentFontFamily
+    currentFontFamily = fontFamily.get()
+    global currentFontSize
+    currentFontSize = sizeVar.get()
+    textEditor.configure(font=(currentFontFamily,currentFontSize))
+fontBox.bind('<<ComboboxSelected>>',setFont)
+fontSize.bind('<<ComboboxSelected>>',setFont)
+
+###### Buttons Functionality
+## Bold Button
+def changeBold():
+    textProperty = tk.font.Font(font=textEditor['font'])
+    if(textProperty.actual()['weight'] == 'normal'):
+        textEditor.configure(font=(currentFontFamily,currentFontSize,'bold'))
+    else:
+        textEditor.configure(font=(currentFontFamily,currentFontSize,'normal'))
+
+boldBtn.configure(command=changeBold)
+
+## Itallics Button
+def changeItalic():
+    textProperty = tk.font.Font(font=textEditor['font'])
+    if(textProperty.actual()['slant'] == 'roman'):
+        textEditor.config(font=(currentFontFamily,currentFontSize,'italic'))
+    else:
+        textEditor.config(font=(currentFontFamily,currentFontSize,'roman'))
+
+italicBtn.configure(command=changeItalic)
+## Underline Button
+def changeUnderline():
+    textProperty = tk.font.Font(font=textEditor['font'])
+    if(textProperty.actual()['underline'] == 0):
+        textEditor.config(font=(currentFontFamily,currentFontSize,'underline'))
+    else:
+        textEditor.config(font=(currentFontFamily,currentFontSize,'normal'))
+
+underlineBtn.configure(command=changeUnderline)
+
+## Font Color Functionality
+def changeFontColor():
+    colorVar = tk.colorchooser.askcolor()
+    textEditor.configure(fg=colorVar[1])
+
+fontColorBtn.configure(command = changeFontColor)
+## Align Functionality
+def alignLeft():
+    textContent = textEditor.get(1.0,'end')
+    textEditor.tag_config('left',justify=tk.LEFT)
+    textEditor.delete(1.0,tk.END)
+    textEditor.insert(tk.INSERT,textContent,'left')
+alignLeftBtn.configure(command=alignLeft)
+
+def alignRight():
+    textContent = textEditor.get(1.0,'end')
+    textEditor.tag_config('right',justify=tk.RIGHT)
+    textEditor.delete(1.0,tk.END)
+    textEditor.insert(tk.INSERT,textContent,'right')
+alignRightBtn.configure(command=alignRight)
+
+def alignCenter():
+    textContent = textEditor.get(1.0,'end')
+    textEditor.tag_config('center',justify=tk.CENTER)
+    textEditor.delete(1.0,tk.END)
+    textEditor.insert(tk.INSERT,textContent,'center')
+alignCenterBtn.configure(command=alignCenter)
+
+textEditor.configure(font=('Arial',32))
 
 ######################## Ending of text editor ######################
 
