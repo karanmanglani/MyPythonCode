@@ -211,6 +211,17 @@ textEditor.configure(font=('Arial',32))
 statusBar = ttk.Label(mainApplication, text='Status Bar')
 statusBar.pack(side=tk.BOTTOM)
 
+textChanged = False
+def changed(event=None):
+    if textEditor.edit_modified():
+        global textChanged = True
+        words = len(textEditor.get(1.0, 'end-1c').split())
+        characters = len(textEditor.get(1.0,'end-1c'))
+        charactersNoSpace = len(textEditor.get(1.0,'end-1c').replace(' ',''))
+        statusBar.config(text=f'Characters : {characters} Characters(not space) : {charactersNoSpace} Words : {words} ')
+    textEditor.edit_modified(False)
+
+textEditor.bind('<<Modified>>',changed)
 ######################## Ending of StatusBar ######################
 
 ####################### Main Menu Functionality ##################
