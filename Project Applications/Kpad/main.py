@@ -134,7 +134,7 @@ scrollBar.config(command=textEditor.yview)
 textEditor.config(yscrollcommand=scrollBar.set)
 
 currentFontFamily = 'Arial'
-currentFontSize = 32
+currentFontSize = 12
 def setFont(mainApplication):
     global currentFontFamily
     currentFontFamily = fontFamily.get()
@@ -202,7 +202,7 @@ def alignCenter():
     textEditor.insert(tk.INSERT,textContent,'center')
 alignCenterBtn.configure(command=alignCenter)
 
-textEditor.configure(font=('Arial',32))
+textEditor.configure(font=('Arial',12))
 
 ######################## Ending of text editor ######################
 
@@ -214,7 +214,8 @@ statusBar.pack(side=tk.BOTTOM)
 textChanged = False
 def changed(event=None):
     if textEditor.edit_modified():
-        global textChanged = True
+        global textChanged
+        textChanged = True
         words = len(textEditor.get(1.0, 'end-1c').split())
         characters = len(textEditor.get(1.0,'end-1c'))
         charactersNoSpace = len(textEditor.get(1.0,'end-1c').replace(' ',''))
@@ -225,15 +226,61 @@ textEditor.bind('<<Modified>>',changed)
 ######################## Ending of StatusBar ######################
 
 ####################### Main Menu Functionality ##################
+url = ''
+# New functionality
+def newFile(event = None):
+    global url
+    url = ''
+    textEditor.delete(1.0,tk.END)
 
+# Open Functionality
+def openFile(event=None):
+    global url
+    url = filedialog.askopenfilename(initialdir=os.getcwd(),title='Select File',filetypes=(('Text File ','*.txt'), ('All Files ','*.*')))
+    try:
+        with open(url,'r') as fr:
+            textEditor.delete(1.0,tk.END)
+            textEditor.insert(1.0,fr.read())
+    except FileNotFoundError:
+        return
+    except:
+        return
+    mainApplication.title(os.path.basename(url))
+
+# Save Functionality
+def saveFile(event=None):
+    global url
+    try:
+        if url:
+            content = str(textEditor.get(1.0,tk.END))
+            with open(url,'w',encoding='utf-8') as fw:
+                fw.write(content)
+                mainApplication.title(os.path.basename(url))
+        else:
+            url = filedialog.asksaveasfile(mode='w',defaultextension='.txt',filetypes=(('Text File ','*.txt'), ('All files ','*.*')))
+            content = textEditor.get(1.0,tk.END)
+            url.write(content)
+            url.close()
+            mainApplication.title(os.path.basename(url))
+    except:
+        return
+
+def saveAsFile(event=None):
+    global url
+    try:
+        url = filedialog.asksaveasfile(mode='w',defaultextension='.txt', filetypes=(('Text Files ','*.txt'),('All files','*.*')))
+        content = textEditor.get(1.0,tk.END)
+        url.write(content)
+        url.close()
+        mainApplication.title(os.path.basename(url))
 
 
 #### As in Procedural programming functions should be declared before use therefore file commands are added in the end and function is defined before
 # Adding File Commands
-file.add_command(label="New",image=newIcon, compound=tk.LEFT, accelerator='Ctrl+N')
-file.add_command(label="Open",image=openIcon, compound=tk.LEFT, accelerator='Ctrl+O')
-file.add_command(label="Save",image=saveIcon, compound=tk.LEFT, accelerator='Ctrl+S')
-file.add_command(label="Save As",image=saveAsIcon, compound=tk.LEFT, accelerator='Ctrl+Alt+S')
+file.add_command(label="New",image=newIcon, compound=tk.LEFT, accelerator='Ctrl+N', command = newFile)
+file.add_command(label="Open",image=openIcon, compound=tk.LEFT, accelerator='Ctrl+O',command=openFile)
+file.add_command(label="Save",image=saveIcon, compound=tk.LEFT, accelerator='Ctrl+S',command=saveFile)
+file.add_command(label="Save As",image=saveAsIcon, compound=tk.LEFT, accelerator='Ctrl+Alt+S',command=saveAsFile)
 file.add_command(label="Exit",image=exitIcon, compound=tk.LEFT, accelerator='Ctrl+Q')
 
 # Adding Edit Commands
