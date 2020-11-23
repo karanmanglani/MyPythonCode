@@ -227,6 +227,7 @@ textEditor.bind('<<Modified>>',changed)
 
 ####################### Main Menu Functionality ##################
 url = ''
+#### File tab functionality
 # New functionality
 def newFile(event = None):
     global url
@@ -297,6 +298,10 @@ def exitFile(event=None):
     except:
         return
 
+
+### Edit tab functionality
+
+
 #### As in Procedural programming functions should be declared before use therefore file commands are added in the end and function is defined before
 # Adding File Commands
 file.add_command(label="New",image=newIcon, compound=tk.LEFT, accelerator='Ctrl+N', command = newFile)
@@ -306,10 +311,10 @@ file.add_command(label="Save As",image=saveAsIcon, compound=tk.LEFT, accelerator
 file.add_command(label="Exit",image=exitIcon, compound=tk.LEFT, accelerator='Ctrl+Q',command=exitFile)
 
 # Adding Edit Commands
-edit.add_command(label="Copy" , image=copyIcon, compound = tk.LEFT, accelerator = 'Ctrl + O')
-edit.add_command(label="Paste" , image=pasteIcon, compound = tk.LEFT, accelerator = 'Ctrl + V')
-edit.add_command(label="Cut" , image=cutIcon, compound = tk.LEFT, accelerator = 'Ctrl + X')
-edit.add_command(label="Clear All" , image=clearAllIcon, compound = tk.LEFT, accelerator = 'Ctrl + Alt + C')
+edit.add_command(label="Copy" , image=copyIcon, compound = tk.LEFT, accelerator = 'Ctrl + O',command=lambda:textEditor.event_generate('<Control c>'))
+edit.add_command(label="Paste" , image=pasteIcon, compound = tk.LEFT, accelerator = 'Ctrl + V',command=lambda:textEditor.event_generate('<Control v>'))
+edit.add_command(label="Cut" , image=cutIcon, compound = tk.LEFT, accelerator = 'Ctrl + X',command=lambda:textEditor.event_generate('<Control x>'))
+edit.add_command(label="Clear All" , image=clearAllIcon, compound = tk.LEFT, accelerator = 'Ctrl + Alt + C',command=lambda:textEditor.delete(1.0,tk.END))
 edit.add_command(label="Find" , image=findIcon, compound = tk.LEFT, accelerator = 'Ctrl + F')
 
 # Adding view commands
