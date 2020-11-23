@@ -292,8 +292,8 @@ def exitFile(event=None):
                 mainApplication.destroy()
             elif mbox is False:
                 mainApplication.destroy()
-            else:
-                mainApplication.destroy()
+        else:
+            mainApplication.destroy()
     except:
         return
 
