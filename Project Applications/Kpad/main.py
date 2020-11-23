@@ -79,7 +79,7 @@ sizeVar = tk.IntVar()
 fontSize = ttk.Combobox(toolBar, width = 20, textvariable = sizeVar, state = 'readonly')
 fontSizeTuple = tuple(range(8,80,2))
 fontSize['values'] = fontSizeTuple
-fontSize.current(fontSizeTuple.index(32))
+fontSize.current(fontSizeTuple.index(12))
 fontSize.grid(row=0, column=1, padx = 5)
 
 ## bold button
@@ -235,7 +235,12 @@ def newFile(event = None):
 
 # Open Functionality
 def openFile(event=None):
-    global url
+    global url,textChanged
+    if textChanged:
+            mbox = messagebox.askyesnocancel('Warning','Do you want to save the file ??')
+            if mbox is True:
+                saveFile()
+    
     url = filedialog.askopenfilename(initialdir=os.getcwd(),title='Select File',filetypes=(('Text File ','*.txt'), ('All Files ','*.*')))
     try:
         with open(url,'r') as fr:
@@ -273,7 +278,24 @@ def saveAsFile(event=None):
         url.write(content)
         url.close()
         mainApplication.title(os.path.basename(url))
+    except:
+        return
 
+## Exit Functionality
+def exitFile(event=None):
+    global url,textChanged
+    try:
+        if textChanged:
+            mbox = messagebox.askyesnocancel('Warning','Do you want to save the file ?? ')
+            if mbox is True:
+                saveFile()
+                mainApplication.destroy()
+            elif mbox is False:
+                mainApplication.destroy()
+            else:
+                mainApplication.destroy()
+    except:
+        return
 
 #### As in Procedural programming functions should be declared before use therefore file commands are added in the end and function is defined before
 # Adding File Commands
@@ -281,7 +303,7 @@ file.add_command(label="New",image=newIcon, compound=tk.LEFT, accelerator='Ctrl+
 file.add_command(label="Open",image=openIcon, compound=tk.LEFT, accelerator='Ctrl+O',command=openFile)
 file.add_command(label="Save",image=saveIcon, compound=tk.LEFT, accelerator='Ctrl+S',command=saveFile)
 file.add_command(label="Save As",image=saveAsIcon, compound=tk.LEFT, accelerator='Ctrl+Alt+S',command=saveAsFile)
-file.add_command(label="Exit",image=exitIcon, compound=tk.LEFT, accelerator='Ctrl+Q')
+file.add_command(label="Exit",image=exitIcon, compound=tk.LEFT, accelerator='Ctrl+Q',command=exitFile)
 
 # Adding Edit Commands
 edit.add_command(label="Copy" , image=copyIcon, compound = tk.LEFT, accelerator = 'Ctrl + O')
