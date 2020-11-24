@@ -301,6 +301,62 @@ def exitFile(event=None):
 
 ### Edit tab functionality
 
+def findText(event = None):
+
+    # Find
+    def find():
+        word = findInput.get()
+        textEditor.tag_remove('match',1.0,tk.END)
+        matches = 0
+        if word:
+            startPos = '1.0'
+            while True:
+                startPos = textEditor.search(word, startPos, stopindex=tk.END)
+                if not startPos:
+                    break
+                endPos = f'{startPos}+{len(word)}c'
+                textEditor.tag_add('match',startPos, endPos)
+                matches += 1
+                startPos = endPos
+                textEditor.tag_config('match',foreground = 'red' , background = 'yellow')  
+    # Replace
+    def replace():
+        word = findInput.get()
+        replaceText = replaceInput.get()
+        content = textEditor.get('1.0', tk.END)
+        newContent = content.replace(word,replaceText)
+        textEditor.delete('1.0',tk.END)
+        textEditor.insert('1.0',newContent)
+
+    findDialogue = tk.Toplevel()
+    findDialogue.geometry('450x250+500+200')
+    findDialogue.title("Find and Replace")
+
+    ## Frame
+    findFrame = ttk.LabelFrame(findDialogue,text='Find/Replace')
+    findFrame.pack(pady=20)
+
+    ## Labels
+    textFindLabel = ttk.Label(findFrame,text = 'Find : ')
+    textReplaceLabel = ttk.Label(findFrame,text='Replace : ')
+
+    ## Entry
+    findInput = ttk.Entry(findFrame, width=30)
+    replaceInput = ttk.Entry(findFrame, width = 30)
+
+    ## Button
+    findButton = ttk.Button(findFrame,text='Find',command=find)
+    replaceButton = ttk.Button(findFrame,text='Replace',command=replace)
+
+    ## Layout
+    textFindLabel.grid(row = 0, column = 0, padx=4,pady=4)
+    findInput.grid(row=0,column=1,padx=4,pady=4)
+    textReplaceLabel.grid(row=1,column=0,padx=4,pady=4)
+    replaceInput.grid(row=1,column=1,padx=4,pady=4)
+    findButton.grid(row=2,column=0,padx=8,pady=4)
+    replaceButton.grid(row=2,column=1,padx=8,pady=4)
+
+    findDialogue.mainloop()
 
 #### As in Procedural programming functions should be declared before use therefore file commands are added in the end and function is defined before
 # Adding File Commands
@@ -315,7 +371,7 @@ edit.add_command(label="Copy" , image=copyIcon, compound = tk.LEFT, accelerator 
 edit.add_command(label="Paste" , image=pasteIcon, compound = tk.LEFT, accelerator = 'Ctrl + V',command=lambda:textEditor.event_generate('<Control v>'))
 edit.add_command(label="Cut" , image=cutIcon, compound = tk.LEFT, accelerator = 'Ctrl + X',command=lambda:textEditor.event_generate('<Control x>'))
 edit.add_command(label="Clear All" , image=clearAllIcon, compound = tk.LEFT, accelerator = 'Ctrl + Alt + C',command=lambda:textEditor.delete(1.0,tk.END))
-edit.add_command(label="Find" , image=findIcon, compound = tk.LEFT, accelerator = 'Ctrl + F')
+edit.add_command(label="Find" , image=findIcon, compound = tk.LEFT, accelerator = 'Ctrl + F',command=findText)
 
 # Adding view commands
 view.add_checkbutton(label="Tool Bar", image=toolBarIcon, compound=tk.LEFT)
