@@ -328,6 +328,7 @@ def findText(event = None):
         textEditor.delete('1.0',tk.END)
         textEditor.insert('1.0',newContent)
 
+    ##### GUI
     findDialogue = tk.Toplevel()
     findDialogue.geometry('450x250+500+200')
     findDialogue.title("Find and Replace")
@@ -358,7 +359,42 @@ def findText(event = None):
 
     findDialogue.mainloop()
 
-#### As in Procedural programming functions should be declared before use therefore file commands are added in the end and function is defined before
+##### View Tab functionality
+showStatusBar = tk.BooleanVar()
+showToolBar = tk.BooleanVar()
+showStatusBar.set(True)
+showToolBar.set(True)
+
+def hideToolBar():
+    global showToolBar
+    if showToolBar: 
+        toolBar.pack_forget()
+        showToolBar = False
+    else:
+        textEditor.pack_forget()
+        statusBar.pack_forget()
+        toolBar.pack(side=tk.TOP,fill = tk.X)
+        textEditor.pack(fill = tk.BOTH,expand = True)
+        statusBar.pack(side=tk.BOTTOM)
+        showToolBar = True
+
+def hideStatusBar():
+    global showStatusBar
+    if showStatusBar:
+        statusBar.pack_forget()
+        showStatusBar = False
+    else:
+        statusBar.pack()
+        showStatusBar = True
+
+
+#### Themes Tab Functionality
+def changeTheme():
+    chosenTheme = themeChoice.get()
+    colorTuple = colorDict.get(chosenTheme)
+    fgColor , bgColor = colorTuple[0],colorTuple[1]
+    textEditor.configure(background = bgColor, fg = fgColor)
+
 # Adding File Commands
 file.add_command(label="New",image=newIcon, compound=tk.LEFT, accelerator='Ctrl+N', command = newFile)
 file.add_command(label="Open",image=openIcon, compound=tk.LEFT, accelerator='Ctrl+O',command=openFile)
@@ -374,8 +410,8 @@ edit.add_command(label="Clear All" , image=clearAllIcon, compound = tk.LEFT, acc
 edit.add_command(label="Find" , image=findIcon, compound = tk.LEFT, accelerator = 'Ctrl + F',command=findText)
 
 # Adding view commands
-view.add_checkbutton(label="Tool Bar", image=toolBarIcon, compound=tk.LEFT)
-view.add_checkbutton(label="Status Bar", image=statusBarIcon, compound=tk.LEFT)
+view.add_checkbutton(label="Tool Bar",onvalue=True,offvalue=False,variable = showToolBar, image=toolBarIcon, compound=tk.LEFT,command= hideToolBar)
+view.add_checkbutton(label="Status Bar",onvalue = 1,offvalue = 0 ,variable = showStatusBar,image=statusBarIcon, compound=tk.LEFT,command = hideStatusBar)
 
 # Adding color theme comamnds
 themeChoice = tk.StringVar()
@@ -392,8 +428,17 @@ colorDict = {
 
 count = 0
 for i in colorDict:
-    colorTheme.add_radiobutton(label=i,image = colorIcons[count],variable = themeChoice, compound = tk.LEFT)
+    colorTheme.add_radiobutton(label=i,image = colorIcons[count],variable = themeChoice, compound = tk.LEFT,command = changeTheme)
     count += 1
+
+
+#### Binding Shortcut Key
+mainApplication.bind('<Control-n>',newFile)
+mainApplication.bind('<Control-O>',openFile)
+mainApplication.bind('<Control-s>' , saveFile)
+mainApplication.bind('<Control-Alt-s>',saveAsFile)
+mainApplication.bind('<Control-q>',exitFile)
+mainApplication.bind('<Control-f>',findText)
 
 ####################### Ending of Main Menu Functionality ##################
 
