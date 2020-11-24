@@ -6,6 +6,7 @@ import os
 mainApplication = tk.Tk()
 mainApplication.geometry('1200x800')
 mainApplication.title('Kpad text editor')
+mainApplication.wm_iconbitmap('icon.ico')
 
 
 ######################## Main Menu ################################
