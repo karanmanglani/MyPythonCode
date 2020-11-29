@@ -442,6 +442,6 @@ mainApplication.bind('<Control-q>',exitFile)
 mainApplication.bind('<Control-f>',findText)
 
 ####################### Ending of Main Menu Functionality ##################
-
+input('lol')
 mainApplication.config(menu=mainMenu)
 mainApplication.mainloop()
