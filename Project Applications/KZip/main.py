@@ -52,7 +52,7 @@ copyIcon = tk.PhotoImage(file='')
 moveIcon = tk.PhotoImage(file='')
 deleteIcon = tk.PhotoImage(file='')
 infoIcon = tk.PhotoImage(file='')
-previousDirectoryIcon = tk.PhotoImage(file='')
+previousDirectoryIcon = tk.PhotoImage(file='') 
 ## 
 #------------------&& End of TaskBar &&------------------------------#
 
@@ -65,12 +65,16 @@ currentDirectory = os.getcwd()
 files = [f for f in os.listdir(currentDirectory) if os.path.isfile(os.path.join(currentDirectory, f))]
 folders = [o for o in os.listdir(currentDirectory) if os.path.isdir(os.path.join(currentDirectory,o))]
 ## Adding Icons
-folderIcon = tk.PhotoImage()
+folderIcon = tk.PhotoImage('./icon.ico')
 fileIcon = tk.PhotoImage()
 ## Inserting folders and files
+folderButtons = folders
 count = 1
 for f in folders:
-    body.insert(count, f)
+    folderButtons[count - 1] = ttk.Button(body,image=folderIcon, text=folders[count - 1])
+    folderButtons[count - 1].grid(row=count - 1,column = 0, padx = 5, pady= 5)
+    body.insert(count, folderButtons[count-1])
+
 #------------------&& End of body &&------------------------------#
 
 ##################### Status Bar ##################################
