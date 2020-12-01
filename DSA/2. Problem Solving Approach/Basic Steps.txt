@@ -1,0 +1,6 @@
+Following are the steps to follow to approach a hard / unknown Problems :-
+    1. Understand the problem
+    2. Explore Concrete Examples
+    3. Break it down
+    4. Solve / Simplify
+    5. Look back and refactor
