@@ -65,3 +65,33 @@ def sameRefactored(arr1,arr2):
     return True
 
 print(sameRefactored(arr1,arr2))
+
+#################### Frequency Counter Challenge #############
+str1 = ''
+str2 = ''
+def isAnagram(str1,str2):
+    frequencyCounter1 = {}
+    frequencyCounter2 = {}
+
+    for i in str1:
+        if i in frequencyCounter1.keys():
+            frequencyCounter1[i] += 1
+        else:
+            frequencyCounter1[i] = 1
+
+    for i in str2:
+        if i in frequencyCounter2.keys():
+            frequencyCounter2[i] += 1
+        else:
+            frequencyCounter2[i] = 1
+
+    for i in frequencyCounter1.keys():
+        if i not in frequencyCounter2.keys():
+            return False
+        
+        if not frequencyCounter1[i] == frequencyCounter2[i]:
+            return False
+    
+    return True
+
+print(isAnagram(str1,str2))
