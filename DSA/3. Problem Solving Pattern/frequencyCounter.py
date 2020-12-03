@@ -72,7 +72,7 @@ str2 = ''
 def isAnagram(str1,str2):
     frequencyCounter1 = {}
     frequencyCounter2 = {}
-
+    
     for i in str1:
         if i in frequencyCounter1.keys():
             frequencyCounter1[i] += 1
