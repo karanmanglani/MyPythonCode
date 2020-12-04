@@ -11,7 +11,7 @@
 alphabetList = 'abcdefghijklmnopqrstuvwxyz'
 print()
 key = 2
-message = 'k '
+message = 'karan'
 
 def encryptor(decryptedMessage, key , alphabetList):
     encryptedMessage = ''
@@ -33,3 +33,14 @@ def decryptor(encryptedMessage , key , alphabetList):
 
 print(decryptor(encryptor(message, key , alphabetList),key,alphabetList))
 print(encryptor(message, key , alphabetList))
+
+## Disadvantage :- Can be breaken by bruteforce attack
+
+def bruteforce(encryptedMessage, alphabetList):
+    possibleMessage = []
+    for i in range(len(alphabetList) + 1):
+        possibleMessage.append(decryptor(encryptedMessage, i, alphabetList))
+    return possibleMessage
+
+for i in bruteforce(encryptor(message, key,alphabetList), alphabetList):
+    print(i)
