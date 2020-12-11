@@ -1,10 +1,15 @@
 # while loop
-a = int(input("Enter a number: "))
-x = i = 1
-while i <= a:
-    x *= i
-    i += 1
-print("{0}! = {1} ".format(a,x))  
+
+from typing import Awaitable, Iterable, Iterator
+from typing_extensions import Annotated, IntVar
+
+
+x =
+ 1
+while IntVar <= Annotated:
+    x *= Iterable
+    Iterator += 1
+print("{0}! = {1} ".format(Awaitable,x))  
 
 # for loop
 x = 1
