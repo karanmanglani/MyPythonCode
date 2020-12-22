@@ -43,4 +43,4 @@ def bruteforce(encryptedMessage, alphabetList):
     return possibleMessage
 
 for i in bruteforce(encryptor(message, key,alphabetList), alphabetList):
-    print(i)
+    print(i) 

@@ -46,19 +46,20 @@ mainMenu.add_cascade(label='Edit',menu = edit)
 ##################### TaskBar ########################################
 
 ## Adding Icons
-addIcon = tk.PhotoImage(file='')
-extractIcon = tk.PhotoImage(file='')
-copyIcon = tk.PhotoImage(file='')
-moveIcon = tk.PhotoImage(file='')
-deleteIcon = tk.PhotoImage(file='')
-infoIcon = tk.PhotoImage(file='')
-previousDirectoryIcon = tk.PhotoImage(file='') 
+addIcon = tk.PhotoImage(file='icons/new.png')
+openIcon = tk.PhotoImage(file='icons/open.png')
+# extractIcon = tk.PhotoImage(file='')
+# copyIcon = tk.PhotoImage(file='')
+# moveIcon = tk.PhotoImage(file='')
+# deleteIcon = tk.PhotoImage(file='')
+# infoIcon = tk.PhotoImage(file='')
+# previousDirectoryIcon = tk.PhotoImage(file='') 
 ## 
 #------------------&& End of TaskBar &&------------------------------#
 
 ##################### Body ########################################
 ## Creating Container
-body = tk.Listbox(mainApplication,bg='#857f7f')
+body = tk.Frame(mainApplication,bg='#857f7f')
 body.pack(fill=tk.BOTH, expand=True)
 ## Gettng and seperating files and folders
 currentDirectory = os.getcwd()
@@ -68,12 +69,20 @@ folders = [o for o in os.listdir(currentDirectory) if os.path.isdir(os.path.join
 folderIcon = tk.PhotoImage('./icon.ico')
 fileIcon = tk.PhotoImage()
 ## Inserting folders and files
-folderButtons = folders
-count = 1
+folderButtons = [ttk.Button()] * len(folders)
+fileButtons = [ttk.Button()] * len(files) 
+print(folderButtons)
+count = 0
 for f in folders:
-    folderButtons[count - 1] = ttk.Button(body,image=folderIcon, text=folders[count - 1])
-    folderButtons[count - 1].grid(row=count - 1,column = 0, padx = 5, pady= 5)
-    body.insert(count, folderButtons[count-1])
+    folderButtons[count] = ttk.Button(body,image=addIcon, text=files[count],compound=tk.LEFT)
+    folderButtons[count].grid(row=count,column = 0, padx = 5, pady= 5)
+    count +=1
+count = 0
+for f in files:
+    fileButtons[count] = ttk.Button(body,image=openIcon,text=files[count],compound=tk.LEFT)
+    fileButtons[count].grid(row=len(folders) + count, column=0,padx=5,pady=5)
+    count += 1
+    
 
 #------------------&& End of body &&------------------------------#
 

@@ -56,10 +56,14 @@ def reverseCipher(event=None):
 def ceaserCipher(event = None):
 
     def encrypt():
-        return None
+        message =  basicTechniques.ceaserCipherEncrypt(messageInput.get(),int(keyInput.get()),alphabetListInput.get())
+        messageElement = ttk.Label(ceaserCipherFrame,text=message)
+        messageElement.grid(row=4,column=0,padx=30,pady=30)
 
     def decrypt():
-        return None
+        message =  basicTechniques.ceaserCipherDecrypt(messageInput.get(),int(keyInput.get()),alphabetListInput.get())
+        messageElement = ttk.Label(ceaserCipherFrame,text=message)
+        messageElement.grid(row=4,column=0,padx=30,pady=30)
 
     # Creating a new window for ceaser cipher
     ceaserCipherDialogue = tk.Toplevel()
@@ -67,10 +71,34 @@ def ceaserCipher(event = None):
     ceaserCipherDialogue.wm_iconbitmap('icon.ico')
     ceaserCipherDialogue.title('Ceaser Cipher')
 
-    # Setting Encrypt and Decrypt
+    # Creating ceaser Cipher label frame
+    ceaserCipherFrame = tk.LabelFrame(ceaserCipherDialogue,text='Ceaser Cipher')
+    ceaserCipherFrame.pack(pady=20)
+    
+    # Creating form and handling user input
+    message = ttk.Label(ceaserCipherFrame,text='Message to encrypt/Decrypt : ')
+    message.grid(row=0,column=0,padx=30,pady=45)
+    messageInput = ttk.Entry(ceaserCipherFrame,width = 50)
+    messageInput.grid(row=0,column=1,padx=30,pady=45)
+
+    key = ttk.Label(ceaserCipherFrame,text='Key : ')
+    key.grid(row=1,column=0,padx=30,pady=5)
+    keyInput = ttk.Entry(ceaserCipherFrame,width=50)
+    keyInput.grid(row=1,column=1,padx=30,pady=5)
+
+    alphabetList = ttk.Label(ceaserCipherFrame,text='Alphabet List : ')
+    alphabetList.grid(row=2,column=0,pady=45,padx=30)
+    alphabetListInput = ttk.Entry(ceaserCipherFrame,width=50)
+    alphabetListInput.grid(row=2,column=1,pady=45,padx=30)
     
 
+    # Encrypt and Decrypt Buttons
+    encryptButton = ttk.Button(ceaserCipherFrame,text='Encrypt',command=encrypt) 
+    decryptButton = ttk.Button(ceaserCipherFrame,text='Decrypt',command=decrypt) 
+    encryptButton.grid(row=3,column=0,padx=30,pady=30)
+    decryptButton.grid(row=3,column=1,padx=30,pady=30)
 
+    ceaserCipherDialogue.mainloop()
 
 # Basic Cryptographs
 
