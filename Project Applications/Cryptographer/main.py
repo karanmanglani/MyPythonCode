@@ -52,19 +52,55 @@ def reverseCipher(event=None):
 
     reverseCipherDialogue.mainloop()
 
+# Ceaser Cipher
+def ceaserCipher(event = None):
+
+    def encrypt():
+        return None
+
+    def decrypt():
+        return None
+
+    # Creating a new window for ceaser cipher
+    ceaserCipherDialogue = tk.Toplevel()
+    ceaserCipherDialogue.geometry('1200x800')
+    ceaserCipherDialogue.wm_iconbitmap('icon.ico')
+    ceaserCipherDialogue.title('Ceaser Cipher')
+
+    # Setting Encrypt and Decrypt
+    
+
+
+
+# Basic Cryptographs
+
 def basicCryptographs(event = None):
-    basicBtnDialogue = tk.Toplevel()
-    basicBtnDialogue.geometry('1200x800')
-    basicBtnDialogue.wm_iconbitmap('icon.ico')
-    basicBtnDialogue.title('Basic Cryptography techniques')
+    # Creating buttons
+    reverseCipherBtn = ttk.Button(mainApplication,text='Perform Reverse Cipher',command=reverseCipher)
+    ceaserCipherBtn = ttk.Button(mainApplication,text='Perform Ceaser Cipher',command=ceaserCipher)
+    #Positioning Buttons
+    reverseCipherBtn.grid(row=0,column=1,pady=20)
+    ceaserCipherBtn.grid(row=1,column=1,pady=0)
 
-    reverseCipherBtn = ttk.Button(basicBtnDialogue,text='Perform Reverse Cipher',command=reverseCipher)
-    reverseCipherBtn.grid(row=0,column=0,padx=50,pady=50)
 
-    basicBtnDialogue.mainloop()
+# Good Cryptographers
+
+def goodCryptographs(event=None):
+    return None
+
+# Advanced Cryptographs
+
+def advancedCryptographs(event = None):
+    return None
 
 ## Creating requited buttons
 basicBtn = ttk.Button(mainApplication,text='Basic Cryptographers',command=basicCryptographs)
-basicBtn.grid(row=0,column=0, padx=500,pady=50)
+basicBtn.grid(row=0,column=0,pady=20,padx=10)
+
+goodBtn = ttk.Button(mainApplication,text='Good Cryptographers',command=goodCryptographs)
+goodBtn.grid(row=1,column=0,pady=0,padx=10)
+
+advancedBtn = ttk.Button(mainApplication,text='advanced Cryptographers',command=advancedCryptographs)
+advancedBtn.grid(row=2,column=0,pady=20,padx=10)
 
 mainApplication.mainloop()
