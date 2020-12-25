@@ -24,3 +24,9 @@ def ceaserCipherDecrypt(encryptedMessage,key,alphabetList):
         return decryptedMessage
     except:
         return None
+    
+def transpositionCipherEncrypt(message,key):
+    return None
+
+def transpositionCipherDecrypt(message,key):
+    return None

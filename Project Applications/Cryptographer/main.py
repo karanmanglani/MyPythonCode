@@ -1,7 +1,8 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import Label, Menu, ttk
 from tkinter import messagebox, font
 import os
+from tkinter.constants import COMMAND
 import basicTechniques
 
 ### Impoerting Crytographer Functions 
@@ -16,8 +17,26 @@ mainApplication.geometry('1200x800')
 mainApplication.title('All in One Cryptographer')
 mainApplication.wm_iconbitmap('icon.ico')
 
+
+## Creating empty main menu
+    # Getting all childrens packed
+def allChildren(root):
+    list = root.winfo_children()
+
+    for item in list:
+        if item.winfo_children():
+            list.extend(item.winfo_children())
+    
+    return list
+
+def removeChildrens(root):
+    widgetList = allChildren(root)
+    for item in widgetList:
+        item.pack_forget()
+
 ## Creating Required Functions 
 def reverseCipher(event=None):
+    removeChildrens(mainApplication)
     def encrypt():
         message =  basicTechniques.reverseCipher(messageInput.get())
         messageElement = ttk.Label(reverseCipherFrame,text=message)
@@ -28,15 +47,11 @@ def reverseCipher(event=None):
         messageElement = ttk.Label(reverseCipherFrame,text=message)
         messageElement.grid(row=2,column=0,padx=30,pady=30)
 
-    ## Creating reverse cipher dialogue
-    reverseCipherDialogue = tk.Toplevel()
-    reverseCipherDialogue.geometry('1200x800')
-    reverseCipherDialogue.wm_iconbitmap('icon.ico')
-    reverseCipherDialogue.title('Reverse Cipher')
+
 
     ## Creating reverseCipher Label Frame 
-    reverseCipherFrame = ttk.LabelFrame(reverseCipherDialogue,text='Reverse Cipher')
-    reverseCipherFrame.pack(pady=20)
+    reverseCipherFrame = ttk.LabelFrame(mainApplication,text='Reverse Cipher')
+    reverseCipherFrame.pack(pady=20,padx=20)
 
     ## Creating a form and handling user input
     message = ttk.Label(reverseCipherFrame,text='Message to encrypt/Decrypt : ')
@@ -50,11 +65,10 @@ def reverseCipher(event=None):
     encryptButton.grid(row=1,column=0,padx=30,pady=30)
     decryptButton.grid(row=1,column=1,padx=30,pady=30)
 
-    reverseCipherDialogue.mainloop()
 
 # Ceaser Cipher
 def ceaserCipher(event = None):
-
+    removeChildrens(mainApplication)
     def encrypt():
         message =  basicTechniques.ceaserCipherEncrypt(messageInput.get(),int(keyInput.get()),alphabetListInput.get())
         messageElement = ttk.Label(ceaserCipherFrame,text=message)
@@ -65,15 +79,10 @@ def ceaserCipher(event = None):
         messageElement = ttk.Label(ceaserCipherFrame,text=message)
         messageElement.grid(row=4,column=0,padx=30,pady=30)
 
-    # Creating a new window for ceaser cipher
-    ceaserCipherDialogue = tk.Toplevel()
-    ceaserCipherDialogue.geometry('1200x800')
-    ceaserCipherDialogue.wm_iconbitmap('icon.ico')
-    ceaserCipherDialogue.title('Ceaser Cipher')
 
     # Creating ceaser Cipher label frame
-    ceaserCipherFrame = tk.LabelFrame(ceaserCipherDialogue,text='Ceaser Cipher')
-    ceaserCipherFrame.pack(pady=20)
+    ceaserCipherFrame = tk.LabelFrame(mainApplication,text='Ceaser Cipher')
+    ceaserCipherFrame.pack(pady=20,padx=20)
     
     # Creating form and handling user input
     message = ttk.Label(ceaserCipherFrame,text='Message to encrypt/Decrypt : ')
@@ -98,37 +107,30 @@ def ceaserCipher(event = None):
     encryptButton.grid(row=3,column=0,padx=30,pady=30)
     decryptButton.grid(row=3,column=1,padx=30,pady=30)
 
-    ceaserCipherDialogue.mainloop()
+    
 
 # Basic Cryptographs
 
-def basicCryptographs(event = None):
-    # Creating buttons
-    reverseCipherBtn = ttk.Button(mainApplication,text='Perform Reverse Cipher',command=reverseCipher)
-    ceaserCipherBtn = ttk.Button(mainApplication,text='Perform Ceaser Cipher',command=ceaserCipher)
-    #Positioning Buttons
-    reverseCipherBtn.grid(row=0,column=1,pady=20)
-    ceaserCipherBtn.grid(row=1,column=1,pady=0)
 
+## Creating the main menu
+mainMenu = tk.Menu()
 
-# Good Cryptographers
+# Creating menu tabs
+basicCryptographs = tk.Menu(mainMenu,tearoff=False)
+intermediateCryptographs = tk.Menu(mainMenu,tearoff=False)
+advancedCryptographs = tk.Menu(mainMenu,tearoff=False)
 
-def goodCryptographs(event=None):
-    return None
+# Adding menu items to basic menu
+basicCryptographs.add_command(label='Revere Cipher',command=reverseCipher)
+basicCryptographs.add_command(label='Ceaser Cipher',command=ceaserCipher)
 
-# Advanced Cryptographs
+# cascading menu tabs
+mainMenu.add_cascade(label='Basic',menu=basicCryptographs)
+mainMenu.add_cascade(label='Intermediate',menu = intermediateCryptographs)
+mainMenu.add_cascade(label='Advanced',menu=advancedCryptographs)
 
-def advancedCryptographs(event = None):
-    return None
 
 ## Creating requited buttons
-basicBtn = ttk.Button(mainApplication,text='Basic Cryptographers',command=basicCryptographs)
-basicBtn.grid(row=0,column=0,pady=20,padx=10)
 
-goodBtn = ttk.Button(mainApplication,text='Good Cryptographers',command=goodCryptographs)
-goodBtn.grid(row=1,column=0,pady=0,padx=10)
-
-advancedBtn = ttk.Button(mainApplication,text='advanced Cryptographers',command=advancedCryptographs)
-advancedBtn.grid(row=2,column=0,pady=20,padx=10)
-
+mainApplication.config(menu=mainMenu)
 mainApplication.mainloop()
