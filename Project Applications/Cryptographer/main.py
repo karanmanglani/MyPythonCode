@@ -38,14 +38,23 @@ def removeChildrens(root):
 def reverseCipher(event=None):
     removeChildrens(mainApplication)
     def encrypt():
+        messageLabel = ttk.Label(reverseCipherFrame,text='Encrypted Message')
         message =  basicTechniques.reverseCipher(messageInput.get())
-        messageElement = ttk.Label(reverseCipherFrame,text=message)
-        messageElement.grid(row=2,column=0,padx=30,pady=30)
-    
+        messageElement = tk.Text(reverseCipherFrame,height=3,width=50)
+        messageElement.config(state='normal')
+        messageElement.insert(tk.END,message)
+        messageElement.config(state='disabled')
+        messageLabel.grid(row=2,column=0,padx=30,pady=30)
+        messageElement.grid(row=2,column=1,padx=30,pady=30)    
     def decrypt():
+        messageLabel = ttk.Label(reverseCipherFrame,text='Decrypted Text : ')
         message =  basicTechniques.reverseCipher(messageInput.get())
-        messageElement = ttk.Label(reverseCipherFrame,text=message)
-        messageElement.grid(row=2,column=0,padx=30,pady=30)
+        messageElement = tk.Text(reverseCipherFrame,width=50,height=3)
+        messageElement.config(state='normal')
+        messageElement.insert(tk.END,message)
+        messageElement.config(state='disabled')
+        messageLabel.grid(row=2,column=0,padx=30,pady=30)
+        messageElement.grid(row=2,column=1,padx=30,pady=30)
 
 
 
@@ -70,14 +79,24 @@ def reverseCipher(event=None):
 def ceaserCipher(event = None):
     removeChildrens(mainApplication)
     def encrypt():
+        messageLabel = ttk.Label(ceaserCipherFrame,text='Encrypted Message :')
         message =  basicTechniques.ceaserCipherEncrypt(messageInput.get(),int(keyInput.get()),alphabetListInput.get())
-        messageElement = ttk.Label(ceaserCipherFrame,text=message)
-        messageElement.grid(row=4,column=0,padx=30,pady=30)
+        messageElement = tk.Text(ceaserCipherFrame,height=3,width=50)
+        messageElement.config(state="normal")
+        messageElement.insert(tk.END,message)
+        messageElement.config(state='disabled')
+        messageLabel.grid(row=4,column=0,padx=30,pady=30)
+        messageElement.grid(row=4,column=1,padx=30,pady=30)
 
     def decrypt():
+        messageLabel = ttk.Label(ceaserCipherFrame,text='Decrypted Message :')
         message =  basicTechniques.ceaserCipherDecrypt(messageInput.get(),int(keyInput.get()),alphabetListInput.get())
-        messageElement = ttk.Label(ceaserCipherFrame,text=message)
-        messageElement.grid(row=4,column=0,padx=30,pady=30)
+        messageElement = tk.Text(ceaserCipherFrame,height=3,width=50)
+        messageElement.config(state='normal')
+        messageElement.insert(tk.END,message)
+        messageElement.config(state='disabled')
+        messageLabel.grid(row=4,column=0,padx=30,pady=30)
+        messageElement.grid(row=4,column=1,padx=30,pady=30)
 
 
     # Creating ceaser Cipher label frame
