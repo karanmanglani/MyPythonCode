@@ -17,6 +17,7 @@ mainApplication.geometry('1200x800')
 mainApplication.title('All in One Cryptographer')
 mainApplication.wm_iconbitmap('icon.ico')
 
+## Creating Required Functions 
 
 ## Creating empty main menu
     # Getting all childrens packed
@@ -34,11 +35,12 @@ def removeChildrens(root):
     for item in widgetList:
         item.pack_forget()
 
-## Creating Required Functions 
+## Basic Cryptographs
+# Reverse Cipher
 def reverseCipher(event=None):
     removeChildrens(mainApplication)
     def encrypt():
-        messageLabel = ttk.Label(reverseCipherFrame,text='Encrypted Message')
+        messageLabel = ttk.Label(reverseCipherFrame,text='Encrypted Text : ')
         message =  basicTechniques.reverseCipher(messageInput.get())
         messageElement = tk.Text(reverseCipherFrame,height=3,width=50)
         messageElement.config(state='normal')
@@ -75,7 +77,7 @@ def reverseCipher(event=None):
     decryptButton.grid(row=1,column=1,padx=30,pady=30)
 
 
-# Ceaser Cipher
+## Ceaser Cipher
 def ceaserCipher(event = None):
     removeChildrens(mainApplication)
     def encrypt():
@@ -126,9 +128,53 @@ def ceaserCipher(event = None):
     encryptButton.grid(row=3,column=0,padx=30,pady=30)
     decryptButton.grid(row=3,column=1,padx=30,pady=30)
 
-    
+## Transposition Cipher
+def transpositionCipher(event = None):
+    removeChildrens(mainApplication)
+    # Encrypting Functionality 
+    def encrypt():
+        messageLabel = ttk.Label(transpositionCipherFrame,text='Encrypted Text : ')
+        message = basicTechniques.transpositionCipherEncrypt(messageInput.get(),int(keyInput.get()))
+        messageElement = tk.Text(transpositionCipherFrame,height=3,width=50)
+        messageElement.config(state='normal')
+        messageElement.insert(tk.END,message)
+        messageElement.config(state='disabled')
+        messageLabel.grid(row=3,column=0,padx=30,pady=30)
+        messageElement.grid(row=3,column=1,padx=30,pady=30)
+    # Decryption Functionality
+    def decrypt():
+        messageLabel = ttk.Label(transpositionCipherFrame,text='Decrypted Text : ')
+        message = basicTechniques.transpositionCipherDecrypt(messageInput.get(),int(keyInput.get()))
+        messageElement = tk.Text(transpositionCipherFrame,height=3,width=50)
+        messageElement.config(state='normal')
+        messageElement.insert(tk.END,message)
+        messageElement.config(state='disabled')
 
-# Basic Cryptographs
+        messageLabel.grid(row=3,column=0,padx=30,pady=30)
+        messageElement.grid(row=3,column=1,padx=30,pady=30)
+    
+    ## GUI
+    # Creating Transposition Cipher Label Frame
+    transpositionCipherFrame = tk.LabelFrame(mainApplication,text='Transposition Cipher')
+    transpositionCipherFrame.pack(padx=20,pady=20)
+
+    # Creating Form Handling User Input
+    message = ttk.Label(transpositionCipherFrame,text='Message to encrypt/Decrypt : ')
+    message.grid(row=0,column=0,padx=30,pady=45)
+    messageInput = ttk.Entry(transpositionCipherFrame,width = 50)
+    messageInput.grid(row=0,column=1,padx=30,pady=45)
+
+    key = ttk.Label(transpositionCipherFrame,text='Key : ')
+    key.grid(row=1,column=0,padx=30,pady=5)
+    keyInput = ttk.Entry(transpositionCipherFrame,width=50)
+    keyInput.grid(row=1,column=1,padx=30,pady=5)
+    
+    # Encrypt and Decrypt Button
+    encryptButton = tk.Button(transpositionCipherFrame,text='Encrypt',command=encrypt)
+    decryptButton = tk.Button(transpositionCipherFrame,text='Decrypt',command=decrypt)
+    encryptButton.grid(row=2,column=0,padx=30,pady=30)
+    decryptButton.grid(row=2,column=1,padx=30,pady=30)
+
 
 
 ## Creating the main menu
@@ -142,6 +188,7 @@ advancedCryptographs = tk.Menu(mainMenu,tearoff=False)
 # Adding menu items to basic menu
 basicCryptographs.add_command(label='Revere Cipher',command=reverseCipher)
 basicCryptographs.add_command(label='Ceaser Cipher',command=ceaserCipher)
+basicCryptographs.add_command(label='Transposition Cipher',command=transpositionCipher)
 
 # cascading menu tabs
 mainMenu.add_cascade(label='Basic',menu=basicCryptographs)
