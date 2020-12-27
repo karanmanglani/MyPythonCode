@@ -4,6 +4,8 @@ from tkinter import messagebox, font
 import os
 from tkinter.constants import COMMAND
 import basicTechniques
+import intermediateTechniques
+import advancedTechniques
 
 ### Impoerting Crytographer Functions 
 ## Basic Cryptographers :-
@@ -16,6 +18,9 @@ mainApplication = tk.Tk()
 mainApplication.geometry('1200x800')
 mainApplication.title('All in One Cryptographer')
 mainApplication.wm_iconbitmap('icon.ico')
+
+notSelectedLabel = ttk.Label(mainApplication,text='Please Select Cryptographs from the above menu')
+notSelectedLabel.pack(padx=30,pady=30)
 
 ## Creating Required Functions 
 
@@ -34,6 +39,10 @@ def removeChildrens(root):
     widgetList = allChildren(root)
     for item in widgetList:
         item.pack_forget()
+
+def underConstruction(root):
+    underConstructionLabel = ttk.Label(root,text='This Feature is Under Construction!!!')
+    underConstructionLabel.pack(padx=30,pady=30)
 
 ## Basic Cryptographs
 # Reverse Cipher
@@ -175,7 +184,55 @@ def transpositionCipher(event = None):
     encryptButton.grid(row=2,column=0,padx=30,pady=30)
     decryptButton.grid(row=2,column=1,padx=30,pady=30)
 
+## Multiplicative Cipher 
 
+def multiplicativeCipher(event=None):
+    removeChildrens(mainApplication)
+    underConstruction(mainApplication)
+
+## Affine Cipher
+def affineCipher(event = None):
+    removeChildrens(mainApplication)
+    underConstruction(mainApplication)
+
+## Substitution Cipher
+def substitutionCipher(event= None):
+    removeChildrens(mainApplication)
+    underConstruction(mainApplication)
+
+### Intermediate Ciphers
+
+## Vernam Cipher
+def vernamCipher(event=None):
+    removeChildrens(mainApplication)
+    underConstruction(mainApplication)
+
+## Vignere Cipher
+def vignereCipher(event=None):
+    removeChildrens(mainApplication)
+    underConstruction(mainApplication)
+
+## Base64
+def base64(event=None):
+    removeChildrens(mainApplication)
+    underConstruction(mainApplication)
+
+## MD5 and SHA
+def md5sha(event=None):
+    removeChildrens(mainApplication)
+    underConstruction(mainApplication)
+
+### Advanced Encryption 
+
+## XOR Type
+def xorType(event=None):
+    removeChildrens(mainApplication)
+    underConstruction(mainApplication)
+
+## RSA
+def rsa(event=None):
+    removeChildrens(mainApplication)
+    underConstruction(mainApplication)
 
 ## Creating the main menu
 mainMenu = tk.Menu()
@@ -189,6 +246,19 @@ advancedCryptographs = tk.Menu(mainMenu,tearoff=False)
 basicCryptographs.add_command(label='Revere Cipher',command=reverseCipher)
 basicCryptographs.add_command(label='Ceaser Cipher',command=ceaserCipher)
 basicCryptographs.add_command(label='Transposition Cipher',command=transpositionCipher)
+basicCryptographs.add_command(label='Multiplicative Cipher',command=multiplicativeCipher)
+basicCryptographs.add_command(label='Affine Cipher',command=affineCipher)
+basicCryptographs.add_command(label='Substitution Cipher',command=substitutionCipher)
+
+# Addin menu items to intermediate menu
+intermediateCryptographs.add_command(label='Vernam Cipher',command=vernamCipher)
+intermediateCryptographs.add_command(label='Vignere Cipher',command=vignereCipher)
+intermediateCryptographs.add_command(label='Base64',command=base64)
+intermediateCryptographs.add_command(label='MD5 and SHA Hashes',command=md5sha)
+
+# Adding menu items to advanced menu
+advancedCryptographs.add_command(label='XOR Type',command=xorType)
+advancedCryptographs.add_command(label='RSA',command=rsa)
 
 # cascading menu tabs
 mainMenu.add_cascade(label='Basic',menu=basicCryptographs)

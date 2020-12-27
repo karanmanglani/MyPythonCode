@@ -64,3 +64,14 @@ def transpositionCipherDecrypt(message,key):
 ## Multiplicative cipher Encrypt
 
 ## Multiplicative Cipher Decrypt
+
+### Affine Cipher
+## Affine Cipher Encryption
+
+## Affine Cipher Decryption
+
+### Substitution Cipher
+## Substitution Cipher Encryption
+
+## Substitution Cipher Decryption
+

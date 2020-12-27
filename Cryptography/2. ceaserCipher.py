@@ -9,7 +9,6 @@
 # To decode decrypted letter is (encryptedIndex - key + total number of letters) mod (total number of letters)
 
 alphabetList = 'abcdefghijklmnopqrstuvwxyz'
-print()
 key = 2
 message = 'karan'
 
