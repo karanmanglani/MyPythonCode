@@ -96,8 +96,8 @@ def ceaserCipher(event = None):
         messageElement.config(state="normal")
         messageElement.insert(tk.END,message)
         messageElement.config(state='disabled')
-        messageLabel.grid(row=4,column=0,padx=30,pady=30)
-        messageElement.grid(row=4,column=1,padx=30,pady=30)
+        messageLabel.grid(row=3,column=0,padx=30,pady=30)
+        messageElement.grid(row=3,column=1,padx=30,pady=30)
 
     def decrypt():
         messageLabel = ttk.Label(ceaserCipherFrame,text='Decrypted Message :')
@@ -128,8 +128,8 @@ def ceaserCipher(event = None):
     # Encrypt and Decrypt Buttons
     encryptButton = ttk.Button(ceaserCipherFrame,text='Encrypt',command=encrypt) 
     decryptButton = ttk.Button(ceaserCipherFrame,text='Decrypt',command=decrypt) 
-    encryptButton.grid(row=3,column=0,padx=30,pady=30)
-    decryptButton.grid(row=3,column=1,padx=30,pady=30)
+    encryptButton.grid(row=2,column=0,padx=30,pady=30)
+    decryptButton.grid(row=2,column=1,padx=30,pady=30)
 
 ## Transposition Cipher
 def transpositionCipher(event = None):
