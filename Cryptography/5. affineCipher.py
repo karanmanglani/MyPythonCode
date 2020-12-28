@@ -1,27 +1,26 @@
 import sys,pyperclip,cryptoMath,random
 
 message = 'Karan is Great'
-keyList = [7,3,55]
+keyList = [3,20]
 length = 128
-def encryptChar(char,keyList):
-    k1,k2,ki = keyList[0],keyList[1],keyList[2]
-    return chr((k1 * ord(char) + k2) % length)
 
-def encrypt(message,keyList):
-    cipherText = ''
+def encrypt(message,key):
+    global length
+    encryptedMessage = ''
     for i in message:
-        cipherText += encryptChar(i,keyList)
-    return cipherText
+        index = ord(i)
+        encryptedIndex = ((key[0] * index) + key[1]) % length
+        encryptedMessage += chr(encryptedIndex)
+    return encryptedMessage
 
-def decryptChar(char,keyList):
-    k1,k2,ki = keyList[0],keyList[1],keyList[2]
-    return chr(ki * (ord(char) - k2) % length)
-
-def decrypt(cipherText,keyList):
-    encryptedText = ''
-    for symbol in cipherText:
-        encryptedText += decryptChar(symbol,keyList)
-    return encryptedText
+def decrypt(message,key):
+    global length
+    decryptedMessage = ''
+    for i in message:
+        index = ord(i)
+        decryptedIndex = (cryptoMath.modInverse(key[0],length)*(index - key[1])) % length
+        decryptedMessage += chr(decryptedIndex)
+    return decryptedMessage
 
 print(decrypt(encrypt(message , keyList) , keyList)) 
 print(encrypt(message,keyList))
