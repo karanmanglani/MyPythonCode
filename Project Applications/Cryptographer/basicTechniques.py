@@ -6,27 +6,27 @@ def reverseCipher(message):
 
 ### Ceaser Cipher
 ## Ceaser Cipher Encrypt
-def ceaserCipherEncrypt(decryptedMessage,key,alphabetList):
+def ceaserCipherEncrypt(decryptedMessage,key):
     try:
         encryptedMessage = ''
         for i in decryptedMessage:
-            index = alphabetList.find(i, 0,25)
+            index = ord(i)
             if not(index == -1):
-                encryptedIndex = (index + key) % len(alphabetList)
-                encryptedMessage += alphabetList[encryptedIndex]
+                encryptedIndex = (index + key) % 128
+                encryptedMessage += chr(encryptedIndex)
         return encryptedMessage
     except:
         return None
 
 ## Ceaser Cipher Decrypt
-def ceaserCipherDecrypt(encryptedMessage,key,alphabetList):
+def ceaserCipherDecrypt(encryptedMessage,key):
     try:
         decryptedMessage = ''
         for i in encryptedMessage:
-            index = alphabetList.find(i, 0,25)
+            index = ord(i)
             if not(index == -1):
-                decryptedIndex = (index + len(alphabetList) - key) % len(alphabetList)
-                decryptedMessage += alphabetList[decryptedIndex]
+                decryptedIndex = (index + 128 - key) % 128
+                decryptedMessage += chr(decryptedIndex)
         return decryptedMessage
     except:
         return None

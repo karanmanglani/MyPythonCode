@@ -91,7 +91,7 @@ def ceaserCipher(event = None):
     removeChildrens(mainApplication)
     def encrypt():
         messageLabel = ttk.Label(ceaserCipherFrame,text='Encrypted Message :')
-        message =  basicTechniques.ceaserCipherEncrypt(messageInput.get(),int(keyInput.get()),alphabetListInput.get())
+        message =  basicTechniques.ceaserCipherEncrypt(messageInput.get(),int(keyInput.get()))
         messageElement = tk.Text(ceaserCipherFrame,height=3,width=50)
         messageElement.config(state="normal")
         messageElement.insert(tk.END,message)
@@ -101,13 +101,13 @@ def ceaserCipher(event = None):
 
     def decrypt():
         messageLabel = ttk.Label(ceaserCipherFrame,text='Decrypted Message :')
-        message =  basicTechniques.ceaserCipherDecrypt(messageInput.get(),int(keyInput.get()),alphabetListInput.get())
+        message =  basicTechniques.ceaserCipherDecrypt(messageInput.get(),int(keyInput.get()))
         messageElement = tk.Text(ceaserCipherFrame,height=3,width=50)
         messageElement.config(state='normal')
         messageElement.insert(tk.END,message)
         messageElement.config(state='disabled')
-        messageLabel.grid(row=4,column=0,padx=30,pady=30)
-        messageElement.grid(row=4,column=1,padx=30,pady=30)
+        messageLabel.grid(row=3,column=0,padx=30,pady=30)
+        messageElement.grid(row=3,column=1,padx=30,pady=30)
 
 
     # Creating ceaser Cipher label frame
@@ -124,12 +124,6 @@ def ceaserCipher(event = None):
     key.grid(row=1,column=0,padx=30,pady=5)
     keyInput = ttk.Entry(ceaserCipherFrame,width=50)
     keyInput.grid(row=1,column=1,padx=30,pady=5)
-
-    alphabetList = ttk.Label(ceaserCipherFrame,text='Alphabet List : ')
-    alphabetList.grid(row=2,column=0,pady=45,padx=30)
-    alphabetListInput = ttk.Entry(ceaserCipherFrame,width=50)
-    alphabetListInput.grid(row=2,column=1,pady=45,padx=30)
-    
 
     # Encrypt and Decrypt Buttons
     encryptButton = ttk.Button(ceaserCipherFrame,text='Encrypt',command=encrypt) 
