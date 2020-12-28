@@ -8,38 +8,37 @@
 # Assign index to each letter then encrypted letter is (index + key) mod (total number of letters)
 # To decode decrypted letter is (encryptedIndex - key + total number of letters) mod (total number of letters)
 
-alphabetList = 'abcdefghijklmnopqrstuvwxyz'
 key = 2
 message = 'karan'
 
-def encryptor(decryptedMessage, key , alphabetList):
+def encryptor(decryptedMessage, key):
     encryptedMessage = ''
     for i in decryptedMessage:
-        index = alphabetList.find(i, 0,25)
+        index = ord(i)
         if not(index == -1):
-            encryptedIndex = (index + key) % len(alphabetList)
-            encryptedMessage += alphabetList[encryptedIndex]
+            encryptedIndex = (index + key) % 128
+            encryptedMessage += chr(encryptedIndex)
     return encryptedMessage
 
-def decryptor(encryptedMessage , key , alphabetList):
+def decryptor(encryptedMessage , key):
     decryptedMessage = ''
     for i in encryptedMessage:
-        index = alphabetList.find(i, 0,25)
+        index = ord(i)
         if not(index == -1):
-            decryptedIndex = (index + len(alphabetList) - key) % len(alphabetList)
-            decryptedMessage += alphabetList[decryptedIndex]
+            decryptedIndex = (index + 128 - key) % 128
+            decryptedMessage += chr(decryptedIndex)
     return decryptedMessage
 
-print(decryptor(encryptor(message, key , alphabetList),key,alphabetList))
-print(encryptor(message, key , alphabetList))
+print(decryptor(encryptor(message, key , ),key,))
+print(encryptor(message, key , ))
 
 ## Disadvantage :- Can be breaken by bruteforce attack
 
 def bruteforce(encryptedMessage, alphabetList):
     possibleMessage = []
-    for i in range(len(alphabetList) + 1):
-        possibleMessage.append(decryptor(encryptedMessage, i, alphabetList))
+    for i in range(129):
+        possibleMessage.append(decryptor(encryptedMessage, i))
     return possibleMessage
 
-for i in bruteforce(encryptor(message, key,alphabetList), alphabetList):
+for i in bruteforce(encryptor(message, key),key):
     print(i) 
