@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import Label, Menu, ttk
 from tkinter import messagebox, font
 import os
-from tkinter.constants import COMMAND
 import basicTechniques
 import intermediateTechniques
 import advancedTechniques
@@ -182,12 +181,110 @@ def transpositionCipher(event = None):
 
 def multiplicativeCipher(event=None):
     removeChildrens(mainApplication)
-    underConstruction(mainApplication)
+    def encrypt():
+        # Creating Widgets
+        messageLabel = tk.Label(multiplicativeCipherFrame,text='Encrypted text : ')
+        message = basicTechniques.multiplicativeCipherEncrypt(messageInput.get(),int(keyInput.get()))
+        messageText = tk.Text(multiplicativeCipherFrame,width=50,height=3)
+        messageText.config(state='normal')
+        messageText.insert(tk.END,message)
+        messageText.config(state='disabled')
+
+        # Positioning Widgets
+        messageLabel.grid(row=3,column=0,padx=30,pady=30)
+        messageText.grid(row=3,column=1,padx=30,pady=30)
+
+    def decrypt():
+        messageLabel = tk.Label(multiplicativeCipherFrame,text='Decrypted text : ')
+        message = basicTechniques.multiplicativeCipherDecrypt(messageInput.get(),int(keyInput.get()))
+        messageText = tk.Text(multiplicativeCipherFrame,width=50,height=3)
+        messageText.config(state='normal')
+        messageText.insert(tk.END,message)
+        messageText.config(state='disabled')
+
+        # Positioning Widgets
+        messageLabel.grid(row=3,column=0,padx=30,pady=30)
+        messageText.grid(row=3,column=1,padx=30,pady=30)
+
+    
+    ## GUI
+    # Creating Label Frame for multiplicative cipher
+    multiplicativeCipherFrame = ttk.LabelFrame(mainApplication,text='Multiplicative Cipher')
+    multiplicativeCipherFrame.pack(padx=20,pady=20)
+
+    # Creating form and handling user input
+    messageLabel = tk.Label(multiplicativeCipherFrame,text='Message to encrypt/decrypt : ')
+    messageInput = ttk.Entry(multiplicativeCipherFrame,width=50)
+    messageLabel.grid(row=0,column=0,padx=30,pady=45)
+    messageInput.grid(row=0,column=1,padx=30,pady=45)
+
+    keyLabel = tk.Label(multiplicativeCipherFrame,text='Key : ')
+    keyInput = ttk.Entry(multiplicativeCipherFrame,width=50)
+    keyLabel.grid(row=1,column=0,padx=30,pady=5)
+    keyInput.grid(row=1,column=1,padx=30,pady=5)
+    
+    # Creating encrypt and decrypt buttons
+    encryptButton = ttk.Button(multiplicativeCipherFrame,text='Encrypt',command=encrypt)
+    decryptButton = ttk.Button(multiplicativeCipherFrame,text='Decrypt',command=decrypt)
+    encryptButton.grid(row=2,column=0,padx=30,pady=30)
+    decryptButton.grid(row=2,column=1,padx=30,pady=30)
+    
 
 ## Affine Cipher
 def affineCipher(event = None):
     removeChildrens(mainApplication)
-    underConstruction(mainApplication)
+    def encrypt():
+        # Creating Widgets
+        messageLabel = tk.Label(affineCipherFrame,text='Encrypted text : ')
+        message = basicTechniques.affineCipherEncrypt(messageInput.get(),[int(keyOneInput.get()),int(keyTwoInput.get())])
+        messageText = tk.Text(affineCipherFrame,width=50,height=3)
+        messageText.config(state='normal')
+        messageText.insert(tk.END,message)
+        messageText.config(state='disabled')
+
+        # Positioning Widgets
+        messageLabel.grid(row=4,column=0,padx=30,pady=30)
+        messageText.grid(row=4,column=1,padx=30,pady=30)
+
+    def decrypt():
+        messageLabel = tk.Label(affineCipherFrame,text='Decrypted text : ')
+        message = basicTechniques.affineCipherDecrypt(messageInput.get(),[int(keyOneInput.get()),int(keyTwoInput.get())])
+        messageText = tk.Text(affineCipherFrame,width=50,height=3)
+        messageText.config(state='normal')
+        messageText.insert(tk.END,message)
+        messageText.config(state='disabled')
+
+        # Positioning Widgets
+        messageLabel.grid(row=4,column=0,padx=30,pady=30)
+        messageText.grid(row=4,column=1,padx=30,pady=30)
+
+    
+    ## GUI
+    # Creating Label Frame for multiplicative cipher
+    affineCipherFrame = ttk.LabelFrame(mainApplication,text='Multiplicative Cipher')
+    affineCipherFrame.pack(padx=20,pady=20)
+
+    # Creating form and handling user input
+    messageLabel = tk.Label(affineCipherFrame,text='Message to encrypt/decrypt : ')
+    messageInput = ttk.Entry(affineCipherFrame,width=50)
+    messageLabel.grid(row=0,column=0,padx=30,pady=45)
+    messageInput.grid(row=0,column=1,padx=30,pady=45)
+
+    keyOneLabel = tk.Label(affineCipherFrame,text='Key 1 : ')
+    keyOneInput = ttk.Entry(affineCipherFrame,width=50)
+    keyOneLabel.grid(row=1,column=0,padx=30,pady=5)
+    keyOneInput.grid(row=1,column=1,padx=30,pady=5)
+    
+    keyTwoLabel = tk.Label(affineCipherFrame,text='Key 2 : ')
+    keyTwoInput = ttk.Entry(affineCipherFrame,width=50)
+    keyTwoLabel.grid(row=2,column=0,padx=30,pady=5)
+    keyTwoInput.grid(row=2,column=1,padx=30,pady=5)
+    
+    # Creating encrypt and decrypt buttons
+    encryptButton = ttk.Button(affineCipherFrame,text='Encrypt',command=encrypt)
+    decryptButton = ttk.Button(affineCipherFrame,text='Decrypt',command=decrypt)
+    encryptButton.grid(row=3,column=0,padx=30,pady=30)
+    decryptButton.grid(row=3,column=1,padx=30,pady=30)
 
 ## Substitution Cipher
 def substitutionCipher(event= None):

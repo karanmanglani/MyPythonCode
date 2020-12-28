@@ -103,7 +103,7 @@ def multiplicativeCipherDecrypt(message,key):
 
 ### Affine Cipher
 ## Affine Cipher Encryption
-def affineCipherEncryption(message,keyList):
+def affineCipherEncrypt(message,keyList):
     length = 128
     encryptedMessage = ''
     if(gcd(keyList[0] , length) == 1):
@@ -115,7 +115,7 @@ def affineCipherEncryption(message,keyList):
     else:
         return 'Please Chose multiply key such that gcd of key and 128 is 1'
 ## Affine Cipher Decryption
-def affineCipherDecryption(message,keyList):
+def affineCipherDecrypt(message,keyList):
     length = 128
     decryptedMessage = ''
     if(gcd(keyList[0] , length) == 1):
