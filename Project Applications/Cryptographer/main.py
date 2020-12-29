@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import Label, Menu, ttk
 from tkinter import messagebox, font
 import os
+import pyperclip
 import basicTechniques
 import intermediateTechniques
 import advancedTechniques
@@ -289,7 +290,58 @@ def affineCipher(event = None):
 ## Substitution Cipher
 def substitutionCipher(event= None):
     removeChildrens(mainApplication)
-    underConstruction(mainApplication)
+    def encrypt():
+        # Creating Widgets
+        messageLabel = tk.Label(substitutionCipherFrame,text='Encrypted Message : ')
+        message = basicTechniques.substitutionCipherEncrypt(lettersInput.get(),keyInput.get(),messageInput.get())
+        messageElement = tk.Text(substitutionCipherFrame,width=50,height=3)
+        messageElement.config(state='normal')
+        messageElement.insert(tk.END,message)
+        messageElement.config(state='disabled')
+
+        # Positioning Widgets
+        messageLabel.grid(row=4,column=0,padx=30,pady=30)
+        messageElement.grid(row=4,column=1,padx=30,pady=30)
+
+    def decrypt():
+        # Creating Widgets
+        messageLabel = tk.Label(substitutionCipherFrame,text='Decrypted Message : ')
+        message = basicTechniques.substitutionCipherDecrypt(lettersInput.get(),keyInput.get(),messageInput.get())
+        messageElement = tk.Text(substitutionCipherFrame,width=50,height=3)
+        messageElement.config(state='normal')
+        messageElement.insert(tk.END,message)
+        messageElement.config(state='disabled')
+
+        # Positioning Widgets
+        messageLabel.grid(row=4,column=0,padx=30,pady=30)
+        messageElement.grid(row=4,column=1,padx=30,pady=30)
+    
+    ## GUI
+    # Creating Label Frame
+    substitutionCipherFrame = tk.LabelFrame(mainApplication,text='Substitution Cipher')
+    substitutionCipherFrame.pack(pady=20)
+
+    # Creating Form for handling user input
+    messageLabel = tk.Label(substitutionCipherFrame,text='Message to Encrypt/Decrypt : ')
+    messageInput = tk.Entry(substitutionCipherFrame,width=50)
+    messageLabel.grid(row=0,column=0,padx=30,pady=45)
+    messageInput.grid(row=0,column=1,padx=30,pady=45)
+
+    lettersLabel = tk.Label(substitutionCipherFrame,text='Letters to be replaced : ')
+    lettersInput = tk.Entry(substitutionCipherFrame,width=50)
+    lettersLabel.grid(row=1,column=0,padx=30,pady=5)
+    lettersInput.grid(row=1,column=1,padx=30,pady=5)
+
+    keyLabel = tk.Label(substitutionCipherFrame,text='Key for replacing letters(string) : ')
+    keyInput = tk.Entry(substitutionCipherFrame,width=50)
+    keyLabel.grid(row=2,column=0,padx=30,pady=45)
+    keyInput.grid(row=2,column=1,padx=30,pady=45)
+
+    # Creating Encrypt and Decrypt Buttons
+    encryptButton = tk.Button(substitutionCipherFrame,text='Encrypt',command=encrypt)
+    decryptButton = tk.Button(substitutionCipherFrame,text='Decrypt',command=decrypt)
+    encryptButton.grid(row=3,column=0,padx=30,pady=5)
+    decryptButton.grid(row=3,column=1,padx=30,pady=5)
 
 ### Intermediate Ciphers
 
@@ -303,17 +355,24 @@ def vignereCipher(event=None):
     removeChildrens(mainApplication)
     underConstruction(mainApplication)
 
+## Playfair Cipher
+def playfairCipher(event=None):
+    removeChildrens(mainApplication)
+    underConstruction(mainApplication)
+
 ## Base64
 def base64(event=None):
     removeChildrens(mainApplication)
     underConstruction(mainApplication)
 
+
+
+### Advanced Encryption 
+
 ## MD5 and SHA
 def md5sha(event=None):
     removeChildrens(mainApplication)
     underConstruction(mainApplication)
-
-### Advanced Encryption 
 
 ## XOR Type
 def xorType(event=None):
@@ -344,10 +403,12 @@ basicCryptographs.add_command(label='Substitution Cipher',command=substitutionCi
 # Addin menu items to intermediate menu
 intermediateCryptographs.add_command(label='Vernam Cipher',command=vernamCipher)
 intermediateCryptographs.add_command(label='Vignere Cipher',command=vignereCipher)
+intermediateCryptographs.add_command(label='Playfair Cipher',command=playfairCipher)
 intermediateCryptographs.add_command(label='Base64',command=base64)
-intermediateCryptographs.add_command(label='MD5 and SHA Hashes',command=md5sha)
+
 
 # Adding menu items to advanced menu
+advancedCryptographs.add_command(label='MD5 and SHA',command=md5sha)
 advancedCryptographs.add_command(label='XOR Type',command=xorType)
 advancedCryptographs.add_command(label='RSA',command=rsa)
 

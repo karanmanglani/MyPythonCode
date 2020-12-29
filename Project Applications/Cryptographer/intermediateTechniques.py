@@ -1,4 +1,9 @@
 
+### Playfair Cipher
+## Playfair Cipher Encryption
+
+## Playfair Cipher Encryption
+
 ### Vernam Cipher
 ## Vernam Cipher Encryption
 

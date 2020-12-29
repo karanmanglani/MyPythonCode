@@ -131,6 +131,27 @@ def affineCipherDecrypt(message,keyList):
 
 ### Substitution Cipher
 ## Substitution Cipher Encryption
-
+def substitutionCipherEncrypt(letters,key,message):
+    encryptedMessage = ''
+    if len(letters) != len(key):
+        return 'Lenth of key and letter is not same'
+    for i in message:
+        if i in letters:
+            index = letters.find(i)
+            encryptedMessage += key[index]
+        else:
+            encryptedMessage += i
+    return encryptedMessage
 ## Substitution Cipher Decryption
-
+def substitutionCipherDecrypt(letters,key,message):
+    decryptedMessage = ''
+    if len(letters) != len(key):
+        return 'Lenth of key and letter is not same'
+    
+    for i in message:
+        if i in key:
+            index = key.find(i)
+            decryptedMessage += letters[index]
+        else:
+            decryptedMessage += i
+    return decryptedMessage
