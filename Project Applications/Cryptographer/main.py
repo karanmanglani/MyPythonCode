@@ -1,6 +1,5 @@
 import tkinter as tk
-from tkinter import Label, Menu, ttk
-from tkinter import messagebox, font
+from tkinter import ttk
 import os
 import pyperclip
 import basicTechniques
@@ -40,6 +39,7 @@ def removeChildrens(root):
     for item in widgetList:
         item.pack_forget()
 
+# Program for under construction parts
 def underConstruction(root):
     underConstructionLabel = ttk.Label(root,text='This Feature is Under Construction!!!')
     underConstructionLabel.pack(padx=30,pady=30)
@@ -49,23 +49,34 @@ def underConstruction(root):
 def reverseCipher(event=None):
     removeChildrens(mainApplication)
     def encrypt():
+        # Creating Widgets
         messageLabel = ttk.Label(reverseCipherFrame,text='Encrypted Text : ')
         message =  basicTechniques.reverseCipher(messageInput.get())
         messageElement = tk.Text(reverseCipherFrame,height=3,width=50)
         messageElement.config(state='normal')
         messageElement.insert(tk.END,message)
         messageElement.config(state='disabled')
+        copyButton = tk.Button(reverseCipherFrame,text='Copy',command=lambda:pyperclip.copy(message))
+        
+        # Positioning Widgets
         messageLabel.grid(row=2,column=0,padx=30,pady=30)
-        messageElement.grid(row=2,column=1,padx=30,pady=30)    
+        messageElement.grid(row=2,column=1,padx=30,pady=30)  
+        copyButton.grid(row=3,column=0,padx=30,pady=30)  
+
     def decrypt():
+        # Creating Widgets
         messageLabel = ttk.Label(reverseCipherFrame,text='Decrypted Text : ')
         message =  basicTechniques.reverseCipher(messageInput.get())
         messageElement = tk.Text(reverseCipherFrame,width=50,height=3)
         messageElement.config(state='normal')
         messageElement.insert(tk.END,message)
         messageElement.config(state='disabled')
+        copyButton = tk.Button(reverseCipherFrame,text='Copy',command=lambda:pyperclip.copy(message))
+        
+        # Positioning Widgets
         messageLabel.grid(row=2,column=0,padx=30,pady=30)
         messageElement.grid(row=2,column=1,padx=30,pady=30)
+        copyButton.grid(row=3,column=0,padx=30,pady=30) 
 
 
 
@@ -90,24 +101,34 @@ def reverseCipher(event=None):
 def ceaserCipher(event = None):
     removeChildrens(mainApplication)
     def encrypt():
+        # Creating Widgets
         messageLabel = ttk.Label(ceaserCipherFrame,text='Encrypted Message :')
         message =  basicTechniques.ceaserCipherEncrypt(messageInput.get(),int(keyInput.get()))
         messageElement = tk.Text(ceaserCipherFrame,height=3,width=50)
         messageElement.config(state="normal")
         messageElement.insert(tk.END,message)
         messageElement.config(state='disabled')
+        copyButton = tk.Button(ceaserCipherFrame,text='Copy',command=lambda:pyperclip.copy(message))
+       
+        # Positioning Widgets
         messageLabel.grid(row=3,column=0,padx=30,pady=30)
         messageElement.grid(row=3,column=1,padx=30,pady=30)
+        copyButton.grid(row=4,column=0,padx=30,pady=30) 
 
     def decrypt():
+        # Creating Widgets
         messageLabel = ttk.Label(ceaserCipherFrame,text='Decrypted Message :')
         message =  basicTechniques.ceaserCipherDecrypt(messageInput.get(),int(keyInput.get()))
         messageElement = tk.Text(ceaserCipherFrame,height=3,width=50)
         messageElement.config(state='normal')
         messageElement.insert(tk.END,message)
         messageElement.config(state='disabled')
+        copyButton = tk.Button(ceaserCipherFrame,text='Copy',command=lambda:pyperclip.copy(message))
+        
+        # Positioning Widgets
         messageLabel.grid(row=3,column=0,padx=30,pady=30)
         messageElement.grid(row=3,column=1,padx=30,pady=30)
+        copyButton.grid(row=4,column=0,padx=30,pady=30) 
 
 
     # Creating ceaser Cipher label frame
@@ -136,25 +157,34 @@ def transpositionCipher(event = None):
     removeChildrens(mainApplication)
     # Encrypting Functionality 
     def encrypt():
+        # Creating Widgets
         messageLabel = ttk.Label(transpositionCipherFrame,text='Encrypted Text : ')
         message = basicTechniques.transpositionCipherEncrypt(messageInput.get(),int(keyInput.get()))
         messageElement = tk.Text(transpositionCipherFrame,height=3,width=50)
         messageElement.config(state='normal')
         messageElement.insert(tk.END,message)
         messageElement.config(state='disabled')
+        copyButton = tk.Button(transpositionCipherFrame,text='Copy',command=lambda:pyperclip.copy(message))
+        
+        # Positioning Widgets
         messageLabel.grid(row=3,column=0,padx=30,pady=30)
         messageElement.grid(row=3,column=1,padx=30,pady=30)
+        copyButton.grid(row=4,column=0,padx=30,pady=30) 
     # Decryption Functionality
     def decrypt():
+        # Creating Widgets
         messageLabel = ttk.Label(transpositionCipherFrame,text='Decrypted Text : ')
         message = basicTechniques.transpositionCipherDecrypt(messageInput.get(),int(keyInput.get()))
         messageElement = tk.Text(transpositionCipherFrame,height=3,width=50)
         messageElement.config(state='normal')
         messageElement.insert(tk.END,message)
         messageElement.config(state='disabled')
+        copyButton = tk.Button(transpositionCipherFrame,text='Copy',command=lambda:pyperclip.copy(message))
 
+        # Positioning Widgets
         messageLabel.grid(row=3,column=0,padx=30,pady=30)
         messageElement.grid(row=3,column=1,padx=30,pady=30)
+        copyButton.grid(row=4,column=0,padx=30,pady=30) 
     
     ## GUI
     # Creating Transposition Cipher Label Frame
@@ -190,10 +220,12 @@ def multiplicativeCipher(event=None):
         messageText.config(state='normal')
         messageText.insert(tk.END,message)
         messageText.config(state='disabled')
+        copyButton = tk.Button(multiplicativeCipherFrame,text='Copy',command=lambda:pyperclip.copy(message))
 
         # Positioning Widgets
         messageLabel.grid(row=3,column=0,padx=30,pady=30)
         messageText.grid(row=3,column=1,padx=30,pady=30)
+        copyButton.grid(row=4,column=0,padx=30,pady=30) 
 
     def decrypt():
         messageLabel = tk.Label(multiplicativeCipherFrame,text='Decrypted text : ')
@@ -202,10 +234,12 @@ def multiplicativeCipher(event=None):
         messageText.config(state='normal')
         messageText.insert(tk.END,message)
         messageText.config(state='disabled')
+        copyButton = tk.Button(multiplicativeCipherFrame,text='Copy',command=lambda:pyperclip.copy(message))
 
         # Positioning Widgets
         messageLabel.grid(row=3,column=0,padx=30,pady=30)
         messageText.grid(row=3,column=1,padx=30,pady=30)
+        copyButton.grid(row=4,column=0,padx=30,pady=30) 
 
     
     ## GUI
@@ -242,10 +276,12 @@ def affineCipher(event = None):
         messageText.config(state='normal')
         messageText.insert(tk.END,message)
         messageText.config(state='disabled')
+        copyButton = tk.Button(affineCipherFrame,text='Copy',command=lambda:pyperclip.copy(message))
 
         # Positioning Widgets
         messageLabel.grid(row=4,column=0,padx=30,pady=30)
         messageText.grid(row=4,column=1,padx=30,pady=30)
+        copyButton.grid(row=5,column=0,padx=30,pady=30) 
 
     def decrypt():
         messageLabel = tk.Label(affineCipherFrame,text='Decrypted text : ')
@@ -254,15 +290,17 @@ def affineCipher(event = None):
         messageText.config(state='normal')
         messageText.insert(tk.END,message)
         messageText.config(state='disabled')
+        copyButton = tk.Button(affineCipherFrame,text='Copy',command=lambda:pyperclip.copy(message))
 
         # Positioning Widgets
         messageLabel.grid(row=4,column=0,padx=30,pady=30)
         messageText.grid(row=4,column=1,padx=30,pady=30)
+        copyButton.grid(row=5,column=0,padx=30,pady=30) 
 
     
     ## GUI
     # Creating Label Frame for multiplicative cipher
-    affineCipherFrame = ttk.LabelFrame(mainApplication,text='Multiplicative Cipher')
+    affineCipherFrame = ttk.LabelFrame(mainApplication,text='Affine Cipher')
     affineCipherFrame.pack(padx=20,pady=20)
 
     # Creating form and handling user input
@@ -298,10 +336,12 @@ def substitutionCipher(event= None):
         messageElement.config(state='normal')
         messageElement.insert(tk.END,message)
         messageElement.config(state='disabled')
+        copyButton = tk.Button(substitutionCipherFrame,text='Copy',command=lambda:pyperclip.copy(message))
 
         # Positioning Widgets
         messageLabel.grid(row=4,column=0,padx=30,pady=30)
         messageElement.grid(row=4,column=1,padx=30,pady=30)
+        copyButton.grid(row=5,column=0,padx=30,pady=30) 
 
     def decrypt():
         # Creating Widgets
@@ -311,10 +351,12 @@ def substitutionCipher(event= None):
         messageElement.config(state='normal')
         messageElement.insert(tk.END,message)
         messageElement.config(state='disabled')
+        copyButton = tk.Button(substitutionCipherFrame,text='Copy',command=lambda:pyperclip.copy(message))
 
         # Positioning Widgets
         messageLabel.grid(row=4,column=0,padx=30,pady=30)
         messageElement.grid(row=4,column=1,padx=30,pady=30)
+        copyButton.grid(row=5,column=0,padx=30,pady=30) 
     
     ## GUI
     # Creating Label Frame
