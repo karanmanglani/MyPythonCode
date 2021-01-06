@@ -1,4 +1,6 @@
 
+
+
 def VernamCipherEncrypt(text,key):
     cipherText = ''
     ptr = 0
@@ -19,5 +21,5 @@ def VernamCipherDecrypt(text,key):
             ptr = 0
     return plainText
 
-print(VernamCipherEncrypt('karan','@$cd3'))
-print(VernamCipherDecrypt(VernamCipherEncrypt('karan','@$cd3'),'@$cd3'))
+print(VernamCipherEncrypt('karan','@$#23'))
+print(VernamCipherDecrypt(VernamCipherEncrypt('karan','@$#23'),'@$#23'))
