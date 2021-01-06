@@ -1,13 +1,23 @@
 
-def makeVernamCipher(text,key):
-    result = ''
+def VernamCipherEncrypt(text,key):
+    cipherText = ''
     ptr = 0
     for char in text:
-        result += chr(ord(char) ^ ord(key[ptr]))
+        cipherText += chr(ord(char) + ord(key[ptr]) % 128)
         ptr += 1
         if ptr == len(key):
             ptr = 0
-    return result
+    return cipherText
 
-print(makeVernamCipher('karan','@$cd1'))
-print(makeVernamCipher(makeVernamCipher('karan','@$cd1'),'@$cd1'))
+def VernamCipherDecrypt(text,key):
+    plainText = ''
+    ptr = 0
+    for char in text:
+        plainText += chr(ord(char) - ord(key[ptr]) + 128 % 128)
+        ptr += 1
+        if ptr == len(key):
+            ptr = 0
+    return plainText
+
+print(VernamCipherEncrypt('karan','@$cd3'))
+print(VernamCipherDecrypt(VernamCipherEncrypt('karan','@$cd3'),'@$cd3'))
