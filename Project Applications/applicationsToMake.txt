@@ -1,0 +1,25 @@
+
+-- Kpad 
+    - Technology Used --> Python , tkinter
+    - Status --> Done(Completed in 2020, class 10th)
+
+-- All in One Cryptographer
+    - Technology Used --> Python , tkinter
+    - Status --> Doing
+
+-- Tic Tac Toe 
+    - Technology Used --> Python , tkinter
+    - Status --> Blueprint Created
+
+-- Music Player
+    - Technology Used --> Python, tkinter
+    - Status --> Started
+
+-- Inventory Management System
+    - Technology Used --> Python, PyQT5
+    - Status --> Not Started
+
+-- Kpad 
+    - Technology Used --> Python,PyQT5
+    - Status --> Started
+
