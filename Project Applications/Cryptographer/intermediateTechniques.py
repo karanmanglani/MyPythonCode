@@ -9,7 +9,7 @@ def generateKey(string,key):
 
 ### Vernam Cipher
 ## Vernam Cipher Encryption
-def VernamCipherEncrypt(text,key):
+def vernamCipherEncrypt(text,key):
     cipherText = ''
     ptr = 0
     for char in text:
@@ -19,7 +19,7 @@ def VernamCipherEncrypt(text,key):
             ptr = 0
     return cipherText
 ## Vernam Cipher Decryption
-def VernamCipherDecrypt(text,key):
+def vernamCipherDecrypt(text,key):
     plainText = ''
     ptr = 0
     for char in text:
@@ -31,7 +31,7 @@ def VernamCipherDecrypt(text,key):
 
 ### Vignere Cipher 
 ## Vignere Cipher Encrytion
-def VignereCipherEncrypt(text,key):
+def vignereCipherEncrypt(text,key):
     key = generateKey(text,key)
     cipherText = ''
     ptr = 0
@@ -43,7 +43,7 @@ def VignereCipherEncrypt(text,key):
     return cipherText
 
 ## Vignere Cipher Decryption
-def VignereCipherDecrypt(text,key):
+def vignereCipherDecrypt(text,key):
     key = generateKey(text,key)
     plainText = ''
     ptr = 0
