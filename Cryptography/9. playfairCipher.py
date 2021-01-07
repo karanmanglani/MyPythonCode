@@ -124,4 +124,4 @@ def playfairCipherDecrypt(key,message):
     return plainText
 
 print(playfairCipherEncrypt('karan','karanisgreat'))
-print(playfairCipherDecryption('karan',playfairCipherEncrypt('karan','karanisgreat')))
+print(playfairCipherDecrypt('karan',playfairCipherEncrypt('karan','karanisgreat')))
