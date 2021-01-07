@@ -499,7 +499,61 @@ def vignereCipher(event=None):
 ## Playfair Cipher
 def playfairCipher(event=None):
     removeChildrens(mainApplication)
-    underConstruction(mainApplication)
+    def encrypt():
+        # Creating Widgets
+        messageLabel = tk.Label(playfairCipherFrame,text='Encrypted Message : ')
+        message = intermediateTechniques.playfairCipherEncrypt(keyInput.get(),messageInput.get(),alphabetToRemoveInput.get())
+        messageElement = tk.Text(playfairCipherFrame,width=50,height=3)
+        messageElement.config(state='normal')
+        messageElement.insert(tk.END,message)
+        messageElement.config(state='disabled')
+        copyButton = tk.Button(playfairCipherFrame,text='Copy',command=lambda:pyperclip.copy(message))
+
+        # Positioning Widgets
+        messageLabel.grid(row=4,column=0,padx=30,pady=30)
+        messageElement.grid(row=4,column=1,padx=30,pady=30)
+        copyButton.grid(row=5,column=0,padx=30,pady=30)
+    def decrypt():
+        # Creating Widgets
+        messageLabel = tk.Label(playfairCipherFrame,text='Encrypted Message : ')
+        message = intermediateTechniques.playfairCipherDecrypt(keyInput.get(),messageInput.get(),alphabetToRemoveInput.get())
+        messageElement = tk.Text(playfairCipherFrame,width=50,height=3)
+        messageElement.config(state='normal')
+        messageElement.insert(tk.END,message)
+        messageElement.config(state='disabled')
+        copyButton = tk.Button(playfairCipherFrame,text='Copy',command=lambda:pyperclip.copy(message))
+
+        # Positioning Widgets
+        messageLabel.grid(row=4,column=0,padx=30,pady=30)
+        messageElement.grid(row=4,column=1,padx=30,pady=30)
+        copyButton.grid(row=5,column=0,padx=30,pady=30)
+    
+    ### Creating GUI for the vernam cipher
+    ## Creating Label Frame for the vernam cipher
+    playfairCipherFrame = tk.LabelFrame(mainApplication,text='Playfair Cipher(No spaces or x or j)')
+    playfairCipherFrame.pack(pady=20)
+    
+    ### Creating form for handling user input
+    messageLabel = tk.Label(playfairCipherFrame,text='Message to Encrypt/Decrypt : ')
+    messageInput = tk.Entry(playfairCipherFrame,width=50)
+    messageLabel.grid(row=0,column=0,padx=30,pady=45)
+    messageInput.grid(row=0,column=1,padx=30,pady=45)
+
+    keyLabel = tk.Label(playfairCipherFrame,text='Key(string) : ')
+    keyInput = tk.Entry(playfairCipherFrame,width=50)
+    keyLabel.grid(row=1,column=0,padx=30,pady=5)
+    keyInput.grid(row=1,column=1,padx=30,pady=5)
+
+    alphabetToRemoveLabel = tk.Label(playfairCipherFrame,text='AlphabetToRemove : ')
+    alphabetToRemoveInput = tk.Entry(playfairCipherFrame,width=50)
+    alphabetToRemoveLabel.grid(row=2,column=0,padx=30,pady=30)
+    alphabetToRemoveInput.grid(row=2,column=1,padx=30,pady=30)
+
+    # Creating Encrypt and Decrypt Buttons
+    encryptButton = tk.Button(playfairCipherFrame,text='Encrypt',command=encrypt)
+    decryptButton = tk.Button(playfairCipherFrame,text='Decrypt',command=decrypt)
+    encryptButton.grid(row=3,column=0,padx=30,pady=5)
+    decryptButton.grid(row=3,column=1,padx=30,pady=5)
 
 ## Base64
 def base64(event=None):
