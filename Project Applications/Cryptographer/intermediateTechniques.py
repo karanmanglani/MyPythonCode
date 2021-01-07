@@ -54,8 +54,9 @@ def vignereCipherDecrypt(text,key):
             ptr = 0
     return plainText
 
-### Playfair Cipher
-## Playfair Cipher Encryption
+### Playfaire Cipher
+## Playfaire Cipher Encryption
+
 
 ## Playfair Cipher Encryption
 
@@ -64,7 +65,7 @@ def vignereCipherDecrypt(text,key):
 
 ## Base64 Decoding
 
-### MD5 and SHA Hashes
+
 
 
 
