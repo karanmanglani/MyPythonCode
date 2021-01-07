@@ -84,7 +84,7 @@ def cipherTextPairCreater(cipherText):
         textList.append(a+b)
     return textList
 
-def playfairCipherDecryption(key,message):
+def playfairCipherDecrypt(key,message):
     keyMatrix = generateKey(key)
     cipherTextPairs = cipherTextPairCreater(message)
     plainText = ''
