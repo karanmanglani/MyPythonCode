@@ -1,6 +1,7 @@
 import string
 import hashlib
 import uuid
+import base64
 
 alphabets = string.ascii_lowercase
 ### Required helper functions
@@ -184,5 +185,10 @@ def playfairCipherDecrypt(key,message,toRemove):
 
 ### Base64 Encoding and Decoding
 ## Base64 Encoding
+def base64Encode(message):
+    return base64.b64encode(message.encode('ascii'))
 
 ## Base64 Decoding
+def base64Decode(encodedText):
+    return base64.b64decode(encodedText).decode('ascii')
+

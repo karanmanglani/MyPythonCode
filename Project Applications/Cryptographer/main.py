@@ -558,14 +558,61 @@ def playfairCipher(event=None):
 ## Base64
 def base64(event=None):
     removeChildrens(mainApplication)
-    underConstruction(mainApplication)
+    def encode():
+        messageLabel = tk.Label(base64Frame,text='Encrypted Message : ')
+        message = intermediateTechniques.base64Encode(messageInput.get())
+        messageElement = tk.Text(base64Frame,width=50,height=3)
+        messageElement.config(state='normal')
+        messageElement.insert(tk.END,message)
+        messageElement.config(state='disabled')
+        copyButton = tk.Button(base64Frame,text='Copy',command=lambda:pyperclip.copy(message))
+
+        # Positioning Widgets
+        messageLabel.grid(row=2,column=0,padx=30,pady=30)
+        messageElement.grid(row=2,column=1,padx=30,pady=30)
+        copyButton.grid(row=3,column=0,padx=30,pady=30)
+    def decode():
+        messageLabel = tk.Label(base64Frame,text='Encrypted Message : ')
+        message = intermediateTechniques.base64Decode(messageInput.get())
+        messageElement = tk.Text(base64Frame,width=50,height=3)
+        messageElement.config(state='normal')
+        messageElement.insert(tk.END,message)
+        messageElement.config(state='disabled')
+        copyButton = tk.Button(base64Frame,text='Copy',command=lambda:pyperclip.copy(message))
+
+        # Positioning Widgets
+        messageLabel.grid(row=2,column=0,padx=30,pady=30)
+        messageElement.grid(row=2,column=1,padx=30,pady=30)
+        copyButton.grid(row=3,column=0,padx=30,pady=30)
+    
+    ### GUI 
+    ## Creating Label Frame for base64 encoding
+    base64Frame = ttk.LabelFrame(mainApplication,text='base64 Encoding and Decoding')
+    base64Frame.pack(pady=20)
+
+    ## Creating form for handling user input
+    messageLabel = tk.Label(base64Frame,text='Message to Encrypt/Decrypt : ')
+    messageInput = tk.Entry(base64Frame,width=50)
+    messageLabel.grid(row=0,column=0,padx=30,pady=45)
+    messageInput.grid(row=0,column=1,padx=30,pady=45)
+
+    # Creating Encode and Decode Buttons
+    encryptButton = tk.Button(base64Frame,text='Encode',command=encode)
+    decryptButton = tk.Button(base64Frame,text='Decode',command=decode)
+    encryptButton.grid(row=1,column=0,padx=30,pady=5)
+    decryptButton.grid(row=1,column=1,padx=30,pady=5)
 
 
 
 ### Advanced Encryption 
 
-## MD5 and SHA
-def md5sha(event=None):
+## MD5
+def md5(event=None):
+    removeChildrens(mainApplication)
+    underConstruction(mainApplication)
+
+## SHA256
+def sha256(event=None):
     removeChildrens(mainApplication)
     underConstruction(mainApplication)
 
@@ -603,7 +650,8 @@ intermediateCryptographs.add_command(label='Base64',command=base64)
 
 
 # Adding menu items to advanced menu
-advancedCryptographs.add_command(label='MD5 and SHA',command=md5sha)
+advancedCryptographs.add_command(label='MD5',command=md5)
+advancedCryptographs.add_command(label='sha256',command=sha256)
 advancedCryptographs.add_command(label='XOR Type',command=xorType)
 advancedCryptographs.add_command(label='RSA',command=rsa)
 
