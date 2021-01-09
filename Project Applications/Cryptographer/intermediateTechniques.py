@@ -1,4 +1,7 @@
 import string
+import hashlib
+import uuid
+
 alphabets = string.ascii_lowercase
 ### Required helper functions
 def generateKey(string,key):
