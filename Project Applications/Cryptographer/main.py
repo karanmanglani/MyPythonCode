@@ -18,8 +18,7 @@ mainApplication.geometry('1200x800')
 mainApplication.title('All in One Cryptographer')
 mainApplication.wm_iconbitmap('icon.ico')
 
-notSelectedLabel = ttk.Label(mainApplication,text='Please Select Cryptographs from the above menu')
-notSelectedLabel.pack(padx=30,pady=30)
+
 
 ## Creating Required Functions 
 
@@ -41,8 +40,18 @@ def removeChildrens(root):
 
 # Program for under construction parts
 def underConstruction(root):
-    underConstructionLabel = ttk.Label(root,text='This Feature is Under Construction!!!')
-    underConstructionLabel.pack(padx=30,pady=30)
+    removeChildrens(mainApplication)
+    c = tk.Canvas(mainApplication, height="700", width="1200")
+    fnt = ('Times', 25 , 'bold italic underline')
+    text = c.create_text(500,100, text="Under construction please select other technique from the menu", font = fnt, fill="red", activefill="green")
+    c.pack()
+
+## Asking user to select a technique
+removeChildrens(mainApplication)
+c = tk.Canvas(mainApplication, height="700", width="1200")
+fnt = ('Times', 40 , 'bold italic underline')
+text = c.create_text(500,100, text="Please select technique from the menu", font = fnt, fill="red", activefill="green")
+c.pack()
 
 ## Basic Cryptographs
 # Reverse Cipher
@@ -672,11 +681,6 @@ def sha256(event=None):
     messageInput.grid(row=0,column=1,padx=30,pady=30)
     hashButton.grid(row=1,column=0,padx=30,pady=30)
 
-## XOR Type
-def xorType(event=None):
-    removeChildrens(mainApplication)
-    underConstruction(mainApplication)
-
 ## RSA
 def rsa(event=None):
     removeChildrens(mainApplication)
@@ -708,7 +712,6 @@ intermediateCryptographs.add_command(label='Base64',command=base64)
 # Adding menu items to advanced menu
 advancedCryptographs.add_command(label='MD5',command=md5)
 advancedCryptographs.add_command(label='sha256',command=sha256)
-advancedCryptographs.add_command(label='XOR Type',command=xorType)
 advancedCryptographs.add_command(label='RSA',command=rsa)
 
 # cascading menu tabs

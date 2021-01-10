@@ -11,11 +11,6 @@ def sha256Hasher(message):
     salt = uuid.uuid4().hex
     return hashlib.sha256(salt.encode() + message.encode('ascii')).hexdigest()
 
-### XOR Type Encryption and Decryption
-## XOR Type Encryption
-
-## XOR Type Decryption
-
 ### RSA Algorithm
 ## RSA Encrypt
 
