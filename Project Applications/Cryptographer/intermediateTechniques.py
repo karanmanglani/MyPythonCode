@@ -1,6 +1,4 @@
 import string
-import hashlib
-import uuid
 import base64
 
 alphabets = string.ascii_lowercase

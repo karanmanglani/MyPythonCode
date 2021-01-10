@@ -565,12 +565,10 @@ def base64(event=None):
         messageElement.config(state='normal')
         messageElement.insert(tk.END,message)
         messageElement.config(state='disabled')
-        copyButton = tk.Button(base64Frame,text='Copy',command=lambda:pyperclip.copy(message))
 
         # Positioning Widgets
         messageLabel.grid(row=2,column=0,padx=30,pady=30)
         messageElement.grid(row=2,column=1,padx=30,pady=30)
-        copyButton.grid(row=3,column=0,padx=30,pady=30)
     def decode():
         messageLabel = tk.Label(base64Frame,text='Encrypted Message : ')
         message = intermediateTechniques.base64Decode(messageInput.get())
@@ -578,12 +576,10 @@ def base64(event=None):
         messageElement.config(state='normal')
         messageElement.insert(tk.END,message)
         messageElement.config(state='disabled')
-        copyButton = tk.Button(base64Frame,text='Copy',command=lambda:pyperclip.copy(message))
 
         # Positioning Widgets
         messageLabel.grid(row=2,column=0,padx=30,pady=30)
         messageElement.grid(row=2,column=1,padx=30,pady=30)
-        copyButton.grid(row=3,column=0,padx=30,pady=30)
     
     ### GUI 
     ## Creating Label Frame for base64 encoding
@@ -609,12 +605,72 @@ def base64(event=None):
 ## MD5
 def md5(event=None):
     removeChildrens(mainApplication)
-    underConstruction(mainApplication)
+    def hasher():
+        # Creating Widgets
+        hashedText = advancedTechniques.md5Hasher(messageInput.get())
+        hashLabel = tk.Label(md5Frame,text='Hashed Hexadecimal : ')
+        hashElement = tk.Text(md5Frame,width=50,height=3)
+        hashElement.config(state='normal')
+        hashElement.insert(tk.END,hashedText)
+        hashElement.config(state='disabled')
+        copyButton = tk.Button(md5Frame,text='Copy',command=lambda:pyperclip.copy(hashedText))
+
+        # Positioning Widgets
+        hashLabel.grid(row=2,column=0,padx=30,pady=30)
+        hashElement.grid(row=2,column=1,padx=30,pady=30)
+        copyButton.grid(row=3,column=0,padx=30,pady=30)
+    
+    
+    ## Creating GUI
+    # Label Form for md5 hasher
+    md5Frame = ttk.LabelFrame(mainApplication,text='MD5 Hasher')
+    md5Frame.pack(pady=20)
+
+    # Creating the form
+    messageLabel = tk.Label(md5Frame,text='Message to hash: ')
+    messageInput = tk.Entry(md5Frame,width=50)
+    hashButton = tk.Button(md5Frame,text='Hash',command=hasher)
+
+    # Positioning Widgets
+    messageLabel.grid(row=0,column=0,padx=30,pady=30)
+    messageInput.grid(row=0,column=1,padx=30,pady=30)
+    hashButton.grid(row=1,column=0,padx=30,pady=30)
+
+
 
 ## SHA256
 def sha256(event=None):
     removeChildrens(mainApplication)
-    underConstruction(mainApplication)
+    def hasher():
+        # Creating Widgets
+        hashedText = advancedTechniques.sha256Hasher(messageInput.get())
+        hashLabel = tk.Label(sha256Frame,text='Hashed Hexadecimal : ')
+        hashElement = tk.Text(sha256Frame,width=50,height=3)
+        hashElement.config(state='normal')
+        hashElement.insert(tk.END,hashedText)
+        hashElement.config(state='disabled')
+        copyButton = tk.Button(sha256Frame,text='Copy',command=lambda:pyperclip.copy(hashedText))
+
+        # Positioning Widgets
+        hashLabel.grid(row=2,column=0,padx=30,pady=30)
+        hashElement.grid(row=2,column=1,padx=30,pady=30)
+        copyButton.grid(row=3,column=0,padx=30,pady=30)
+    
+    
+    ## Creating GUI
+    # Label Form for md5 hasher
+    sha256Frame = ttk.LabelFrame(mainApplication,text='SHA256 Hasher')
+    sha256Frame.pack(pady=20)
+
+    # Creating the form
+    messageLabel = tk.Label(sha256Frame,text='Message to hash: ')
+    messageInput = tk.Entry(sha256Frame,width=50)
+    hashButton = tk.Button(sha256Frame,text='Hash',command=hasher)
+
+    # Positioning Widgets
+    messageLabel.grid(row=0,column=0,padx=30,pady=30)
+    messageInput.grid(row=0,column=1,padx=30,pady=30)
+    hashButton.grid(row=1,column=0,padx=30,pady=30)
 
 ## XOR Type
 def xorType(event=None):
@@ -662,6 +718,5 @@ mainMenu.add_cascade(label='Advanced',menu=advancedCryptographs)
 
 
 ## Creating requited buttons
-
 mainApplication.config(menu=mainMenu)
 mainApplication.mainloop()
