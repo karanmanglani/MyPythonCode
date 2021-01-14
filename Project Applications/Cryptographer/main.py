@@ -57,7 +57,7 @@ c.pack()
 # Reverse Cipher
 def reverseCipher(event=None):
     removeChildrens(mainApplication)
-    def encrypt():
+    def encrypt(event=None):
         # Creating Widgets
         messageLabel = ttk.Label(reverseCipherFrame,text='Encrypted Text : ')
         message =  basicTechniques.reverseCipher(messageInput.get())
@@ -71,6 +71,8 @@ def reverseCipher(event=None):
         messageLabel.grid(row=2,column=0,padx=30,pady=30)
         messageElement.grid(row=2,column=1,padx=30,pady=30)  
         copyButton.grid(row=3,column=0,padx=30,pady=30)  
+
+        
 
     def decrypt():
         # Creating Widgets
@@ -87,8 +89,6 @@ def reverseCipher(event=None):
         messageElement.grid(row=2,column=1,padx=30,pady=30)
         copyButton.grid(row=3,column=0,padx=30,pady=30) 
 
-
-
     ## Creating reverseCipher Label Frame 
     reverseCipherFrame = ttk.LabelFrame(mainApplication,text='Reverse Cipher')
     reverseCipherFrame.pack(pady=20,padx=20)
@@ -104,6 +104,9 @@ def reverseCipher(event=None):
     decryptButton = ttk.Button(reverseCipherFrame,text='Decrypt',command=decrypt) 
     encryptButton.grid(row=1,column=0,padx=30,pady=30)
     decryptButton.grid(row=1,column=1,padx=30,pady=30)
+
+    # Binding Shortcut Key
+    reverseCipherFrame.bind('<enter>',encrypt)
 
 
 ## Ceaser Cipher
@@ -712,7 +715,7 @@ intermediateCryptographs.add_command(label='Base64',command=base64)
 # Adding menu items to advanced menu
 advancedCryptographs.add_command(label='MD5',command=md5)
 advancedCryptographs.add_command(label='sha256',command=sha256)
-advancedCryptographs.add_command(label='RSA',command=rsa)
+#advancedCryptographs.add_command(label='RSA',command=rsa)
 
 # cascading menu tabs
 mainMenu.add_cascade(label='Basic',menu=basicCryptographs)
