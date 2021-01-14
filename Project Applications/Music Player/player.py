@@ -32,5 +32,14 @@ playButton.grid(row=0,column=2,padx=10)
 pauseButton.grid(row=0,column=3,padx=10)
 stopButton.grid(row=0,column=4,padx=10)
 
+# Adding Menu
+mainMenu = Menu(mainApplication)
 
+## Creating dropdowns
+# Add Song
+addSongMenu = Menu(mainMenu,tearoff=False)
+addSongMenu.add_cascade(label="Add Songs",menu=addSongMenu)
+
+
+mainApplication.config(menu=mainMenu)
 mainApplication.mainloop()
