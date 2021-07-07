@@ -21,3 +21,8 @@ Step 3 :- Navigate to the installation directory and then run the application.
 2. Implementation of RSA Cipher
 
 3. Improved UI
+
+## About the software
+
+This software is a collection of most of the major encryption algorithms with their decryption algorithms(if possible).
+It can be used to encrypt your message so that only the concerned person or software could read it increasing your privacy.
