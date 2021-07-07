@@ -1,1 +1,1 @@
-Download the zip and run main.py to acces cryptographer
+Download the zip and run main.py to access cryptographer
