@@ -1,6 +1,9 @@
 Method 1 :- (Platform Independent)
+
 Download the folder and run main.py to access cryptographer
+
 Or 
+
 Method 2 :- (For Windows Only)
 Step 1 :- Run the bat file as administrator to create a setup in dist folder.
 Step 2 :- run the setup and remember the installation directory
