@@ -1,3 +1,5 @@
+## Running the application
+
 Method 1 :- (Platform Independent)
 
 Download the folder and run main.py to access cryptographer
@@ -12,7 +14,7 @@ Step 2 :- run the setup and remember the installation directory
 
 Step 3 :- Navigate to the installation directory and then run the application.
 
-Upcoming Features :- 
+## Upcoming Features :- 
 
 1. Setup for the application for both windows and MacOs so that no need to do step 1 in method 2
 
