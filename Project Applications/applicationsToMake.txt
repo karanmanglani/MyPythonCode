@@ -5,7 +5,7 @@
 
 -- All in One Cryptographer
     - Technology Used --> Python , tkinter
-    - Status --> Doing
+    - Status --> Done(Completed on 17th Jan 2021 , class 10th)
 
 -- Tic Tac Toe 
     - Technology Used --> Python , tkinter
